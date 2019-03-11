@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar app color="white" extended="true" extension-height="36px">
+    <v-toolbar app color="white" style="height:100px">
         <v-container class="logo-container">
             <v-layout align-center justify-start row fill-height>
                 <v-flex>
@@ -24,6 +24,5 @@ export default {
 <style scoped>
 .logo-container{
     padding: 0;
-    padding-top: 
 }
 </style>
