@@ -1,18 +1,35 @@
 <template>
-    <v-container>
-        <v-layout align-center justify-space-between row fill-height>
-            <v-flex align-self-center>
-                <img src="../assets/aoc_coffee.jpg" height="100px">
+    <v-container class="nav-bar"> 
+        <v-layout align-center row>
+            <v-flex xs6>
+                <v-container>
+                    <v-layout align-center row fill-height>
+                        <v-flex align-self-center>
+                            <img src="../assets/aoc_coffee.jpg" height="100px">
+                        </v-flex>
+                    </v-layout>
+                </v-container>
             </v-flex>
-            <v-flex align-self-center>            
-                <v-btn flat>Link One</v-btn>
-            </v-flex>
-            <v-flex align-self-center>            
-                <v-btn flat>Link Two</v-btn>
-            </v-flex>
-            <v-flex align-self-center>            
-                <v-btn flat>Link Three</v-btn>
-            </v-flex>
+            <v-flex xs8 align-self-center>
+                <v-container class="button-container">
+                    <v-layout align-center justify-space-around row fill-height>
+                        <v-flex xs4>
+                            <v-btn flat>Order Online</v-btn>
+                        </v-flex>
+                        <v-flex xs4>
+                            <v-btn flat>Brew</v-btn>
+                        </v-flex>
+                        <v-flex xs4>
+                            <v-btn flat>Bistro</v-btn>
+                        </v-flex>
+                        <v-flex xs4>
+                            <v-btn flat>Micro-Roasting</v-btn>
+                        </v-flex>
+                        <v-flex xs4>
+                            <v-btn flat>Retail</v-btn>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
             </v-flex>
         </v-layout>
     </v-container>
@@ -25,7 +42,12 @@ export default {
 </script>
 
 <style scoped>
-.logo-container{
+.nav-bar{
+    background-color: #FFFFFF;
+    padding: 0;
+}
+
+.button-container{
     padding: 0;
 }
 </style>
