@@ -1,11 +1,11 @@
 <template>
     <v-container class="nav-bar"> 
-        <v-layout align-center row>
+        <v-layout align-center row fill-height>
             <v-flex xs6>
                 <v-container>
                     <v-layout align-center row fill-height>
                         <v-flex align-self-center>
-                            <img src="../assets/aoc_coffee.jpg" height="100px">
+                            <a><img src="../assets/aoc_coffee.jpg" height="100px"></a>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -45,6 +45,7 @@ export default {
 .nav-bar{
     background-color: #FFFFFF;
     padding: 0;
+    max-height: 150px;
 }
 
 .button-container{
