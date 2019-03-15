@@ -33,9 +33,6 @@
                                 <v-btn flat>Micro-Roasting</v-btn>
                             </v-flex>
                             <v-flex md2>
-                                <v-btn flat>About</v-btn>
-                            </v-flex>
-                            <v-flex md2>
                                 <v-btn flat>Retail</v-btn>
                             </v-flex>
                             <v-flex md2>
