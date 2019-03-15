@@ -39,7 +39,7 @@
                                 <v-btn flat>Retail</v-btn>
                             </v-flex>
                             <v-flex md2>
-                                <v-btn color="brown" dark>Order Online</v-btn>
+                                <v-btn color="#8D6E63" dark>Order Online</v-btn>
                             </v-flex>
                         </v-layout>
                     </v-container>
