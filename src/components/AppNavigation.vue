@@ -11,7 +11,7 @@
         </v-container>
         <v-container app hidden-sm-and-down class="nav-bar" fluid pa-0>
             <v-layout align-center row fill-height>
-                <v-flex md4 lg3 offset-md0 offset-lg1>
+                <v-flex md3 offset-md0 offset-lg1>
                     <v-container >
                         <v-layout align-center row fill-height>
                             <v-flex align-self-center>
@@ -20,7 +20,7 @@
                         </v-layout>
                     </v-container>
                 </v-flex>
-                <v-flex sm12 md8 align-self-center>
+                <v-flex md8 lg7 align-self-center>
                     <v-container class="button-container">
                         <v-layout align-center justify-space-around row fill-height>
                             <v-flex md2>
@@ -31,6 +31,9 @@
                             </v-flex>
                             <v-flex md2>
                                 <v-btn flat>Micro-Roasting</v-btn>
+                            </v-flex>
+                            <v-flex md2>
+                                <v-btn flat>About</v-btn>
                             </v-flex>
                             <v-flex md2>
                                 <v-btn flat>Retail</v-btn>
@@ -50,7 +53,7 @@
 export default {
     data() {
         return {
-            drawer:false
+            drawer: false
         }
     },
     name: 'AppNavigation'
