@@ -5,15 +5,8 @@
                 <div>
                     <div class="display-4 font-weight-black white--text text-xs-center mb-3">Backyard Brew</div>
                 </div>
-                
                 <div class="display-3 white--text text-xs-center">Experience Flavors.</div>
                 <div class="display-3 white--text text-xs-center mb-5">Don't Expect Them.</div>
-
-            </v-flex>
-            <v-flex>
-                <v-btn fab class="mt-5 brown darken-4">
-                    <v-icon large color="white">expand_more</v-icon>
-                </v-btn>
             </v-flex>
         </v-layout>
     </v-container>
