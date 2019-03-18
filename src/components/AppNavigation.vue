@@ -1,4 +1,5 @@
 <template>
+<!--  -->
     <span>
         <v-container app hidden-md-and-up pa-0>
             <v-toolbar color="#FFFFFF" light="">
@@ -30,7 +31,7 @@
                                 <v-btn flat>Bistro</v-btn>
                             </v-flex>
                             <v-flex md2>
-                                <v-btn flat>Micro-Roasting</v-btn>
+                                <v-btn flat>Roasting</v-btn>
                             </v-flex>
                             <v-flex md2>
                                 <v-btn flat>About</v-btn>
