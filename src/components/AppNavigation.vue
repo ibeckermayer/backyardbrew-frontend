@@ -3,11 +3,20 @@
     <span>
         <v-container app hidden-md-and-up pa-0>
             <v-toolbar color="#FFFFFF" light="">
-                <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+                <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
                 <v-toolbar-title class="centered">ALLOUTCOMES COFFEE</v-toolbar-title>
             </v-toolbar>
                 <v-navigation-drawer v-model="drawer" app>
-                    <p>test</p>
+                    <v-list>
+                        <template v-for="(item, index) in nav_labels">
+                            <v-list-tile :key="index">
+                                <v-list-tile-content>
+                                    {{item.nav_label}}
+                                </v-list-tile-content>
+                            </v-list-tile>
+                            <v-divider :key="`divider-${index}`"></v-divider>
+                        </template>
+                    </v-list>
                 </v-navigation-drawer>
         </v-container>
         <v-container app hidden-sm-and-down class="nav-bar" fluid pa-0>
@@ -54,7 +63,15 @@
 export default {
     data() {
         return {
-            drawer: false
+            drawer: false,
+            nav_labels: [
+                {nav_label: 'Brew'},
+                {nav_label: 'Bistro'},
+                {nav_label: 'Roasting'},
+                {nav_label: 'About'},
+                {nav_label: 'Retail'},
+                {nav_label: 'Order Online'},
+            ]            
         }
     },
     name: 'AppNavigation'
