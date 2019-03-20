@@ -18,6 +18,29 @@
                                 <v-container fluid fill-height>
                                     <v-layout justify-center>
                                         <span>
+                                            <v-icon large dark>access_time</v-icon>
+                                        </span>
+                                    </v-layout>
+                                </v-container>
+                                <v-divider dark></v-divider>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">
+                                        Open 7 Days A Week
+                                    </span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Monday-Saturday: 8AM-5PM</span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Sunday: 8AM-3PM</span>
+                                </v-card-text>
+                            </v-card>
+                        </v-flex>
+                        <v-flex sm12 md4>
+                            <v-card class="card_1">
+                                <v-container fluid fill-height>
+                                    <v-layout justify-center>
+                                        <span>
                                             <v-icon large dark>home</v-icon>
                                         </span>
                                     </v-layout>
@@ -33,29 +56,6 @@
                                 </v-card-text>
                                 <v-card-text class="text-xs-center">
                                     <span class="white--text subheading">Also accessible from Cambridge Ave. across from the parking garage.</span>
-                                </v-card-text>
-                            </v-card>
-                        </v-flex>
-                        <v-flex sm12 md4>
-                            <v-card class="card_1">
-                                <v-container fluid fill-height>
-                                    <v-layout justify-center>
-                                        <span>
-                                            <v-icon large dark>access_time</v-icon>
-                                        </span>
-                                    </v-layout>
-                                </v-container>
-                                <v-divider dark></v-divider>
-                                <v-card-text class="text-xs-center">
-                                    <span class="white--text title">
-                                        <div>Open 7 Days A Week</div>
-                                    </span>
-                                </v-card-text>
-                                <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading">Monday-Saturday: 8AM-5PM</span>
-                                </v-card-text>
-                                <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading">Sunday: 8AM-3PM</span>
                                 </v-card-text>
                             </v-card>
                         </v-flex>
