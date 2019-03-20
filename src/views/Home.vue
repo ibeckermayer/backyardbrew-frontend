@@ -11,9 +11,9 @@
                 <div class="display-3 white--text text-xs-center mb-5">Don't Expect Them.</div>
             </v-flex>
             <v-flex>
-                <v-container grid-list-lg>
-                    <v-layout align-baseline justify-space-between row fill-height>
-                        <v-flex s12 md4>
+                <v-container grid-list-lg fluid>
+                    <v-layout align-baseline justify-space-between row fill-height wrap>
+                        <v-flex sm12 md4>
                             <v-card class="card_2">
                                 <v-container fluid fill-height>
                                     <v-layout justify-center>
@@ -36,7 +36,7 @@
                                 </v-card-text>
                             </v-card>
                         </v-flex>
-                        <v-flex s12 md4>
+                        <v-flex sm12 md4>
                             <v-card class="card_1">
                                 <v-container fluid fill-height>
                                     <v-layout justify-center>
@@ -59,7 +59,7 @@
                                 </v-card-text>
                             </v-card>
                         </v-flex>
-                        <v-flex s12 md4>
+                        <v-flex sm12 md4>
                             <v-card class="card_0">
                                 <v-container fluid fill-height>
                                     <v-layout justify-center>
@@ -119,15 +119,15 @@ export default {
 }
 
 .card_0 {
-    background: rgba(190, 160, 128, 1);
+    background: rgba(190, 160, 128, 0.9);
 }
 
 .card_1 {
-    background: rgb(141, 110, 99, 1);
+    background: rgb(141, 110, 99, 0.9);
 }
 
 .card_2 {
-    background: rgb(85, 55, 31, 1);
+    background: rgb(85, 55, 31, 0.9);
 }
 
 a {
