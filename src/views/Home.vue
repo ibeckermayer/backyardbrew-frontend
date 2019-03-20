@@ -12,26 +12,75 @@
             </v-flex>
             <v-flex>
                 <v-container grid-list-lg>
-                    <v-layout align-center justify-space-between row fill-height>
+                    <v-layout align-baseline justify-space-between row fill-height>
                         <v-flex s12 md4>
-                            <v-card>
+                            <v-card class="card_2">
                                 <v-container fluid fill-height>
-                                    <v-layout justify-center="" class="mb-2">
-                                        <span class="teal">
+                                    <v-layout justify-center>
+                                        <span>
                                             <v-icon large dark>home</v-icon>
                                         </span>
                                     </v-layout>
                                 </v-container>
+                                <v-divider dark></v-divider>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text title">
+                                        <div>444 S California Ave</div><div>Palo Alto, CA</div><div>94306</div>
+                                    </span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Down an alley between Terun and Country Sun. In a backyard. How about that.</span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Also accessible from Cambridge Ave. across from the parking garage.</span>
+                                </v-card-text>
                             </v-card>
                         </v-flex>
                         <v-flex s12 md4>
-                            <v-card>
-                                <v-card-text>12</v-card-text>
+                            <v-card class="card_1">
+                                <v-container fluid fill-height>
+                                    <v-layout justify-center>
+                                        <span>
+                                            <v-icon large dark>access_time</v-icon>
+                                        </span>
+                                    </v-layout>
+                                </v-container>
+                                <v-divider dark></v-divider>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text title">
+                                        <div>Open 7 Days A Week</div>
+                                    </span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Monday-Saturday: 8AM-5PM</span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Sunday: 8AM-3PM</span>
+                                </v-card-text>
                             </v-card>
                         </v-flex>
                         <v-flex s12 md4>
-                            <v-card>
-                                <v-card-text>12</v-card-text>
+                            <v-card class="card_0">
+                                <v-container fluid fill-height>
+                                    <v-layout justify-center>
+                                        <span>
+                                            <v-icon large dark>info</v-icon>
+                                        </span>
+                                    </v-layout>
+                                </v-container>
+                                <v-divider dark></v-divider>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Dogs welcome!</span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Kid friendly!</span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading">Wheelchair access!!!</span>
+                                </v-card-text>
+                                <v-card-text class="text-xs-center">
+                                    <span class="white--text subheading"><a href="https://squareup.com/gift/82WTQJJS2HWY9/order">eGift Cards Here!</a></span>
+                                </v-card-text>
                             </v-card>
                         </v-flex>
                     </v-layout>
@@ -67,5 +116,21 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.card_0 {
+    background: rgba(190, 160, 128, 1);
+}
+
+.card_1 {
+    background: rgb(141, 110, 99, 1);
+}
+
+.card_2 {
+    background: rgb(85, 55, 31, 1);
+}
+
+a {
+    color: white;
 }
 </style>
