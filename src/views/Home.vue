@@ -75,10 +75,10 @@
                                 <v-card-text class="text-xs-center">
                                     <span class="white--text subheading">Kid friendly!</span>
                                 </v-card-text>
-                                <v-card-text class="text-xs-center">
+<!--                                 <v-card-text class="text-xs-center">
                                     <span class="white--text subheading">Wheelchair access!!!</span>
                                 </v-card-text>
-                                <v-card-text class="text-xs-center">
+ -->                                <v-card-text class="text-xs-center">
                                     <span class="white--text subheading"><a href="https://squareup.com/gift/82WTQJJS2HWY9/order">eGift Cards Here!</a></span>
                                 </v-card-text>
                             </v-card>
