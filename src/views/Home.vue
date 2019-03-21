@@ -10,41 +10,47 @@
                 <div class="display-3 white--text text-xs-center">Experience Flavors.</div>
                 <div class="display-3 white--text text-xs-center mb-5">Don't Expect Them.</div>
             </v-flex>
-            <v-flex>
-                <v-container grid-list-lg fluid>
+            <v-flex fluid>
+                <v-container grid-list-lg fluid fill-height>
                     <v-layout align-baseline justify-space-between row fill-height wrap>
-                        <v-flex sm12 md4>
-                            <v-card class="card_2">
-                                <v-container fluid fill-height>
-                                    <v-layout justify-center>
-                                        <span>
-                                            <v-icon large dark>access_time</v-icon>
-                                        </span>
-                                    </v-layout>
-                                </v-container>
+
+                        <v-flex sm12 md4 fill-height>
+                            <v-card class="card_2 fill-height">
+                                <v-card-text style="padding: 0;">
+                                    <v-container fluid fill-height>
+                                        <v-layout justify-center>
+                                            <span>
+                                                <v-icon large dark>access_time</v-icon>
+                                            </span>
+                                        </v-layout>
+                                    </v-container>
+                                </v-card-text>
                                 <v-divider dark></v-divider>
                                 <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading">
+                                    <span class="white--text title">
                                         Open 7 Days A Week
                                     </span>
                                 </v-card-text>
                                 <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading">Monday-Saturday: 8AM-5PM</span>
+                                    <span class="white--text title">Monday-Saturday: 8AM-5PM</span>
                                 </v-card-text>
                                 <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading">Sunday: 8AM-3PM</span>
+                                    <span class="white--text title">Sunday: 8AM-3PM</span>
                                 </v-card-text>
                             </v-card>
                         </v-flex>
-                        <v-flex sm12 md4>
-                            <v-card class="card_1">
-                                <v-container fluid fill-height>
-                                    <v-layout justify-center>
-                                        <span>
-                                            <v-icon large dark>home</v-icon>
-                                        </span>
-                                    </v-layout>
-                                </v-container>
+
+                         <v-flex sm12 md4 fill-height>
+                            <v-card class="card_1 fill-height">
+                                <v-card-text style="padding: 0;">
+                                    <v-container fluid fill-height>
+                                        <v-layout justify-center>
+                                            <span>
+                                                <v-icon large dark>home</v-icon>
+                                            </span>
+                                        </v-layout>
+                                    </v-container>
+                                </v-card-text>
                                 <v-divider dark></v-divider>
                                 <v-card-text class="text-xs-center">
                                     <span class="white--text title">
@@ -59,30 +65,36 @@
                                 </v-card-text>
                             </v-card>
                         </v-flex>
-                        <v-flex sm12 md4>
-                            <v-card class="card_0">
-                                <v-container fluid fill-height>
-                                    <v-layout justify-center>
-                                        <span>
-                                            <v-icon large dark>info</v-icon>
-                                        </span>
-                                    </v-layout>
-                                </v-container>
+
+                       
+                       
+                        <v-flex sm12 md4 fill-height>
+                            <v-card class="card_0 fill-height">
+                                <v-card-text style="padding: 0;">
+                                    <v-container fluid fill-height>
+                                        <v-layout justify-center>
+                                            <span>
+                                                <v-icon large dark>info</v-icon>
+                                            </span>
+                                        </v-layout>
+                                    </v-container>
+                                </v-card-text>
                                 <v-divider dark></v-divider>
                                 <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading">Dogs welcome!</span>
+                                    <span class="white--text title">Dogs welcome!</span>
                                 </v-card-text>
                                 <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading">Kid friendly!</span>
+                                    <span class="white--text title">Kid friendly!</span>
                                 </v-card-text>
 <!--                                 <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading">Wheelchair access!!!</span>
+                                    <span class="white--text title">Wheelchair access!!!</span>
                                 </v-card-text>
  -->                                <v-card-text class="text-xs-center">
-                                    <span class="white--text subheading"><a href="https://squareup.com/gift/82WTQJJS2HWY9/order">eGift Cards Here!</a></span>
+                                    <span class="white--text title"><a href="https://squareup.com/gift/82WTQJJS2HWY9/order">eGift Cards Here!</a></span>
                                 </v-card-text>
                             </v-card>
                         </v-flex>
+
                     </v-layout>
                 </v-container>
             </v-flex>
@@ -130,7 +142,12 @@ export default {
     background: rgb(85, 55, 31, 0.9);
 }
 
+.v-card {
+    padding-bottom: 40px;
+}
+
 a {
     color: white;
 }
+
 </style>
