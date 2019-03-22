@@ -4,14 +4,18 @@
         <v-container app hidden-md-and-up pa-0>
             <v-toolbar color="#FFFFFF" light="">
                 <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-                <v-toolbar-title class="centered">ALLOUTCOMES COFFEE</v-toolbar-title>
+                <router-link to="/">
+                    <v-toolbar-title class="centered">ALLOUTCOMES COFFEE</v-toolbar-title>
+                </router-link>
             </v-toolbar>
                 <v-navigation-drawer v-model="drawer" app>
                     <v-list>
                         <template v-for="(item, index) in nav_labels">
-                            <v-list-tile :key="index">
+                            <v-list-tile :key="index" :to="item.route">
                                 <v-list-tile-content>
-                                    {{item.nav_label}}
+                                    <div class="tile-content">
+                                        {{item.nav_label}}
+                                    </div>
                                 </v-list-tile-content>
                             </v-list-tile>
                             <v-divider :key="`divider-${index}`"></v-divider>
@@ -25,7 +29,9 @@
                     <v-container >
                         <v-layout align-center row fill-height>
                             <v-flex align-self-center>
-                                <a><img src="../assets/aoc_coffee.jpg" height="100px"></a>
+                                <router-link to="/">
+                                    <img src="../assets/aoc_coffee.jpg" height="100px">
+                                </router-link>
                             </v-flex>
                         </v-layout>
                     </v-container>
@@ -34,7 +40,7 @@
                     <v-container class="button-container">
                         <v-layout align-center justify-space-around row fill-height>
                             <v-flex md2>
-                                <v-btn flat>Brew</v-btn>
+                                <v-btn to="/brew" flat>Brew</v-btn>
                             </v-flex>
                             <v-flex md2>
                                 <v-btn flat>Bistro</v-btn>
@@ -65,12 +71,30 @@ export default {
         return {
             drawer: false,
             nav_labels: [
-                {nav_label: 'Brew'},
-                {nav_label: 'Bistro'},
-                {nav_label: 'Roasting'},
-                {nav_label: 'About'},
-                {nav_label: 'Retail'},
-                {nav_label: 'Order Online'},
+                {
+                    nav_label: 'Brew',
+                    route: '/brew'
+                },
+                {
+                    nav_label: 'Bistro', 
+                    route: '/brew'
+                },
+                {
+                    nav_label: 'Roasting',
+                    route: '/brew'
+                },
+                {
+                    nav_label: 'About',
+                    route: '/brew'
+                },
+                {
+                    nav_label: 'Retail',
+                    route: '/brew'
+                },
+                {
+                    nav_label: 'Order Online',
+                    route: '/brew'
+                },
             ]            
         }
     },
@@ -87,5 +111,15 @@ export default {
 
 .button-container{
     padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tile-content {
+    color: black;
+    text-decoration: none;
 }
 </style>
