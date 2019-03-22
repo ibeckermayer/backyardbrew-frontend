@@ -1,5 +1,4 @@
 <template>
-<span>
     <v-container fluid fill-height class="home">
         <v-layout class="home-filter" justify-center column pa-5>
             <v-flex>
@@ -40,7 +39,7 @@
                             </v-card>
                         </v-flex>
 
-                         <v-flex sm12 md4 fill-height>
+                        <v-flex sm12 md4 fill-height>
                             <v-card class="card_1 fill-height">
                                 <v-card-text style="padding: 0;">
                                     <v-container fluid fill-height>
@@ -66,8 +65,6 @@
                             </v-card>
                         </v-flex>
 
-                       
-                       
                         <v-flex sm12 md4 fill-height>
                             <v-card class="card_0 fill-height">
                                 <v-card-text style="padding: 0;">
@@ -86,10 +83,7 @@
                                 <v-card-text class="text-xs-center">
                                     <span class="white--text title">Kid friendly!</span>
                                 </v-card-text>
-<!--                                 <v-card-text class="text-xs-center">
-                                    <span class="white--text title">Wheelchair access!!!</span>
-                                </v-card-text>
- -->                                <v-card-text class="text-xs-center">
+                                <v-card-text class="text-xs-center">
                                     <span class="white--text title"><a href="https://squareup.com/gift/82WTQJJS2HWY9/order">eGift Cards Here!</a></span>
                                 </v-card-text>
                             </v-card>
@@ -100,8 +94,6 @@
             </v-flex>
         </v-layout>
     </v-container>
-    <!-- <brew></brew> -->
-</span>
 </template>
 
 <script>
