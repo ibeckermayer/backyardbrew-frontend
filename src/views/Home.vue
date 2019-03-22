@@ -143,7 +143,8 @@ export default {
 }
 
 .v-card {
-    padding-bottom: 40px;
+    padding-bottom: 30px;
+    height: 100%;
 }
 
 a {
