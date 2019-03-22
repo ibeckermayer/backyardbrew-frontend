@@ -25,7 +25,7 @@
         </v-container>
         <v-container app hidden-sm-and-down class="nav-bar" fluid pa-0>
             <v-layout align-center row fill-height>
-                <v-flex md3 offset-md0 offset-lg1>
+                <v-flex md2 offset-md0 offset-lg0>
                     <v-container >
                         <v-layout align-center row fill-height>
                             <v-flex align-self-center>
@@ -36,26 +36,32 @@
                         </v-layout>
                     </v-container>
                 </v-flex>
-                <v-flex md8 lg7 align-self-center>
+                <v-flex md10>
                     <v-container class="button-container">
-                        <v-layout align-center justify-space-around row fill-height>
-                            <v-flex md2>
+                        <v-layout align-center justify-space-around="" row fill-height>
+                            <v-flex md1>
                                 <v-btn to="/brew" flat>Brew</v-btn>
                             </v-flex>
-                            <v-flex md2>
+                            <v-flex md1>
                                 <v-btn flat>Bistro</v-btn>
                             </v-flex>
-                            <v-flex md2>
+                            <v-flex md1>
                                 <v-btn flat>Roasting</v-btn>
                             </v-flex>
-                            <v-flex md2>
+                            <v-flex md1>
                                 <v-btn flat>About</v-btn>
                             </v-flex>
-                            <v-flex md2>
+                            <v-flex md1>
                                 <v-btn flat>Retail</v-btn>
                             </v-flex>
-                            <v-flex md2>
-                                <v-btn color="#8D6E63" dark>Order Online</v-btn>
+                            <v-flex md1>
+                                <v-btn flat>R&D</v-btn>
+                            </v-flex>
+                            <v-flex md1>
+                                <v-btn flat>Tech</v-btn>
+                            </v-flex>
+                            <v-flex md1>
+                                <v-btn color="#8D6E63" dark>Order</v-btn>
                             </v-flex>
                         </v-layout>
                     </v-container>
