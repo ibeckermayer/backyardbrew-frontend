@@ -30,7 +30,7 @@
                         <v-layout align-center row fill-height>
                             <v-flex align-self-center>
                                 <router-link to="/">
-                                    <img src="../assets/aoc_coffee.jpg" height="100px">
+                                    <img src="@/assets/aoc_coffee.jpg" height="100px">
                                 </router-link>
                             </v-flex>
                         </v-layout>

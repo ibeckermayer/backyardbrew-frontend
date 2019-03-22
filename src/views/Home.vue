@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import HomeTitle from '../components/HomeTitle'
-import HomeCards from '../components/HomeCards'
+import HomeTitle from '@/components/HomeTitle'
+import HomeCards from '@/components/HomeCards'
 
 export default {
     name: 'Home',
@@ -22,7 +22,7 @@ export default {
 
 <style scoped>
 .home {
-    background: url('../assets/landing_coffee_0.jpg');
+    background: url('../assets/landing_coffee_2.jpg');
     background-size: cover;
     width: 100%;
     height: 100%;
