@@ -43,10 +43,10 @@
                                 <v-btn to="/brew" flat>Brew</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn flat>Bistro</v-btn>
+                                <v-btn to="/bistro" flat>Bistro</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn flat>Roasting</v-btn>
+                                <v-btn to="/roasting" flat>Roasting</v-btn>
                             </v-flex>
                             <v-flex md1>
                                 <v-btn flat>About</v-btn>
@@ -83,11 +83,11 @@ export default {
                 },
                 {
                     nav_label: 'Bistro', 
-                    route: '/brew'
+                    route: '/bistro'
                 },
                 {
                     nav_label: 'Roasting',
-                    route: '/brew'
+                    route: '/roasting'
                 },
                 {
                     nav_label: 'About',
