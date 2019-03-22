@@ -2,7 +2,6 @@
     <v-flex fluid>
         <v-container grid-list-lg fluid fill-height>
             <v-layout align-baseline justify-space-between row fill-height wrap>
-
                 <v-flex sm12 md4 :class="{'fill-height': $vuetify.breakpoint.mdAndUp}">
                     <v-card class="card_2 fill-height" :class="{'v-card-padding': $vuetify.breakpoint.mdAndUp}">
                         <v-card-text style="padding: 0;">
@@ -28,7 +27,6 @@
                         </v-card-text>
                     </v-card>
                 </v-flex>
-
                 <v-flex sm12 md4 :class="{'fill-height': $vuetify.breakpoint.mdAndUp}">
                     <v-card class="card_1 fill-height" :class="{'v-card-padding': $vuetify.breakpoint.mdAndUp}">
                         <v-card-text style="padding: 0;">
@@ -54,7 +52,6 @@
                         </v-card-text>
                     </v-card>
                 </v-flex>
-
                 <v-flex sm12 md4 :class="{'fill-height': $vuetify.breakpoint.mdAndUp}">
                     <v-card class="card_0 fill-height" :class="{'v-card-padding': $vuetify.breakpoint.mdAndUp}">
                         <v-card-text style="padding: 0;">
@@ -95,11 +92,11 @@ export default {
 }
 
 .card_1 {
-    background: rgb(141, 110, 99, 0.8);
+    background: rgba(141, 110, 99, 0.8);
 }
 
 .card_2 {
-    background: rgb(85, 55, 31, 0.8);
+    background: rgba(85, 55, 31, 0.8);
 }
 
 .v-card-padding {
