@@ -36,7 +36,7 @@
                         </v-layout>
                     </v-container>
                 </v-flex>
-                <v-flex md10>
+                <v-flex md9>
                     <v-container class="button-container">
                         <v-layout align-center justify-space-around="" row fill-height>
                             <v-flex md1>
