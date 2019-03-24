@@ -1,5 +1,5 @@
 <template>
-    <FullPageMenuImg :menu="image"></FullPageMenuImg>
+    <FullPageMenuImg :menu="image" :backgroundImage="bgimage"></FullPageMenuImg>
 </template>
 
 <script>
@@ -12,7 +12,8 @@ export default {
     },
     data() {
         return {
-            image: require('@/assets/roasting_menu.png')
+            image: require('@/assets/roasting_menu.png'),
+            bgimage: require('@/assets/landing_coffee_1.jpg')
         }
     }
 };
