@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid fill-height class="full-page-menu-img">
+    <v-container fluid fill-height :style="stylea" class="full-page-menu-img">
         <v-layout column wrap fill-height align-center justify-center>
             <v-flex class="img-flex" md8 :class="{'pa-5': $vuetify.breakpoint.mdAndUp}">
                 <img :src="menu" width="100%" />
@@ -13,19 +13,25 @@
 export default {
     name: 'FullPageMenuImg',
     props: [
-        'menu'
-    ]
+        'menu',
+        'backgroundImage'
+    ],
+    computed: {
+        stylea() {
+            return 'background-image: url(' + this.backgroundImage + ')';
+        }
+    }
 };
 </script>
 
 <style scoped>
 .full-page-menu-img {
-    background: url('../assets/landing_coffee_1.jpg');
     background-size: cover;
     width: 100%;
     height: 100%;
     padding: 0;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 img {
