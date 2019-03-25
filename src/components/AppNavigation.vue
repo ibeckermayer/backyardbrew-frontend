@@ -1,5 +1,4 @@
 <template>
-<!--  -->
     <span>
         <v-container app hidden-md-and-up pa-0>
             <v-toolbar color="#FFFFFF" light="">
@@ -25,7 +24,7 @@
         </v-container>
         <v-container app hidden-sm-and-down class="nav-bar" fluid pa-0>
             <v-layout align-center row fill-height>
-                <v-flex md2 offset-md0 offset-lg0>
+                <v-flex md2>
                     <v-container >
                         <v-layout align-center row fill-height>
                             <v-flex align-self-center>
@@ -61,7 +60,7 @@
                                 <v-btn flat>Tech</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn color="#8D6E63" dark>Order</v-btn>
+                                <v-btn color="#8D6E63" dark href="https://aoccoffee.com/collections/all">Order</v-btn>
                             </v-flex>
                         </v-layout>
                     </v-container>
