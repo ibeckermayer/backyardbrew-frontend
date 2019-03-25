@@ -48,16 +48,16 @@
                                 <v-btn to="/roasting" flat>Roasting</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn flat>About</v-btn>
+                                <v-btn to="/under_construction" flat>About</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn flat>Retail</v-btn>
+                                <v-btn to="/under_construction" flat>Retail</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn flat>R&D</v-btn>
+                                <v-btn to="/under_construction" flat>R&D</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn flat>Tech</v-btn>
+                                <v-btn to="/under_construction" flat>Tech</v-btn>
                             </v-flex>
                             <v-flex md1>
                                 <v-btn color="#8D6E63" dark href="https://aoccoffee.com/collections/all">Order</v-btn>
