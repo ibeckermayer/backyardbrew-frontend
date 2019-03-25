@@ -39,28 +39,28 @@
                     <v-container class="button-container">
                         <v-layout align-center justify-space-around="" row fill-height>
                             <v-flex md1>
-                                <v-btn to="/brew" flat>Brew</v-btn>
+                                <v-btn to="/brew" flat v-ripple="{ class: `brown--text` }">Brew</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn to="/bistro" flat>Bistro</v-btn>
+                                <v-btn to="/bistro" flat v-ripple="{ class: `brown--text` }">Bistro</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn to="/roasting" flat>Roasting</v-btn>
+                                <v-btn to="/roasting" flat v-ripple="{ class: `brown--text` }">Roasting</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn to="/under_construction" flat>About</v-btn>
+                                <v-btn to="/under_construction" flat v-ripple="{ class: `brown--text` }">About</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn to="/under_construction" flat>Retail</v-btn>
+                                <v-btn to="/under_construction" flat v-ripple="{ class: `brown--text` }">Retail</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn to="/under_construction" flat>R&D</v-btn>
+                                <v-btn to="/under_construction" flat v-ripple="{ class: `brown--text` }">R&D</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn to="/under_construction" flat>Tech</v-btn>
+                                <v-btn to="/under_construction" flat v-ripple="{ class: `brown--text` }">Tech</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn color="#8D6E63" dark href="https://aoccoffee.com/collections/all">Order</v-btn>
+                                <v-btn color="#8D6E63" dark href="https://aoccoffee.com/collections/all" v-ripple="{ class: `brown--text` }">Order</v-btn>
                             </v-flex>
                         </v-layout>
                     </v-container>
@@ -127,4 +127,9 @@ a {
     color: black;
     text-decoration: none;
 }
+
+.v-btn:hover::before {
+    color: brown;
+}
+
 </style>
