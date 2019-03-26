@@ -1,6 +1,6 @@
 <template>
     <v-container fluid fill-height :style="stylea" class="full-page-menu-img">
-        <v-layout column wrap fill-height align-center justify-center>
+        <v-layout class="fpmi-filter" column wrap fill-height align-center justify-center>
             <v-flex class="img-flex" md8 :class="{'pa-5': $vuetify.breakpoint.mdAndUp}">
                 <img :src="menu" width="100%" />
             </v-flex>
@@ -25,6 +25,9 @@ export default {
 </script>
 
 <style scoped>
+.fpmi-filter {
+    background:rgba(62, 39, 35, 0.3);
+}
 .full-page-menu-img {
     background-size: cover;
     width: 100%;
