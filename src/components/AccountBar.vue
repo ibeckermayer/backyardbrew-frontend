@@ -1,42 +1,30 @@
 <template>
-    <v-container app hidden-sm-and-down class="account-bar" fluid pa-0>
+    <v-container app hidden-sm-and-down class="account-bar" fluid pa-0 >
         <v-layout align-center row fill-height>
-            <v-flex md2>
-                <v-container class="button-container">
-                    <v-layout row fill-height>
-                        <v-flex md1>
-                            <v-btn small active-class="custom_button" to="/brew" flat v-ripple="{ class: `brown--text` }">Brew</v-btn>
+            <v-flex md12 elevation-1 class="account-bar-flex">
+                <v-container class="button-container" fluid>
+                    <v-layout justify-end row fill-height>
+                        <v-flex text-md-center md1>
+                            <a>Contact</a>
                         </v-flex>
-                    </v-layout>
-                </v-container>
-            </v-flex>
-            <v-flex md9>
-                <v-container class="button-container">
-                    <v-layout justify-space-around row fill-height>
-                        <v-flex md1>
-                            <v-btn small active-class="custom_button" to="/brew" flat v-ripple="{ class: `brown--text` }">Brew</v-btn>
+                        <!-- <v-flex text-md-center md2 style="color: white;">|</v-flex> -->
+                        <v-flex text-md-center md1>
+                            <!-- <v-btn small flat active-class="custom_button" to="/brew" v-ripple="{ class: `brown--text` }">Login</v-btn> -->
+                            <a>Register</a>
                         </v-flex>
-                        <v-flex md1>
-                            <v-btn small active-class="custom_button" to="/bistro" flat v-ripple="{ class: `brown--text` }">Bistro</v-btn>
+                        <!-- <v-flex md2 text-md-center>or</v-flex> -->
+                        <!-- <v-flex text-md-center md2 style="color: white;"></v-flex> -->
+                        <v-flex text-md-center md1>
+                            <a>Login</a>
                         </v-flex>
-                        <v-flex md1>
-                            <v-btn small active-class="custom_button" to="/roasting" flat v-ripple="{ class: `brown--text` }">Roasting</v-btn>
+                        <v-flex text-md-center md1>
+                            <a>Cart</a>
                         </v-flex>
-                        <v-flex md1>
-                            <v-btn small active-class="custom_button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">About</v-btn>
+                        <v-flex text-md-center md1>
+                            <a>Account</a>
                         </v-flex>
-                        <v-flex md1>
-                            <v-btn small active-class="custom_button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">Retail</v-btn>
-                        </v-flex>
-                        <v-flex md1>
-                            <v-btn small active-class="custom_button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">R&D</v-btn>
-                        </v-flex>
-                        <v-flex md1>
-                            <v-btn small active-class="custom_button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">Tech</v-btn>
-                        </v-flex>
-                        <v-flex md1>
-                            <v-btn small color="#8D6E63" dark href="https://aoccoffee.com/collections/all" v-ripple="{ class: `brown--text` }">Order</v-btn>
-                        </v-flex>
+                        
+                        <!-- <v-flex text-md-center md2 style="color: white;">|</v-flex> -->
                     </v-layout>
                 </v-container>
             </v-flex>
@@ -56,7 +44,21 @@ export default {
     padding-bottom: 0;
 }
 .account-bar {
-    background-color: #8D6E63
+    background-color: #8D6E63;
 }
+
+a {
+    margin: 0;
+    padding: 0;
+    /* text-decoration: none; */
+
+}
+
+.flex.md2, a{
+    flex-basis: 4%;
+    color: white;
+    /* font-weight: bold; */
+}
+
 </style>
 

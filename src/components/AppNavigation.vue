@@ -26,7 +26,7 @@
         <v-container app hidden-sm-and-down class="nav-bar" fluid pa-0>
             <v-layout align-center row fill-height>
                 <v-flex md2>
-                    <v-container class="logo-container">
+                    <v-container align-center class="logo-container">
                         <v-layout row fill-height>
                             <v-flex>
                                 <router-link to="/">
@@ -36,7 +36,7 @@
                         </v-layout>
                     </v-container>
                 </v-flex>
-                <v-flex md9>
+                <v-flex md9 lg10>
                     <v-container class="button-container">
                         <v-layout justify-space-around row fill-height>
                             <v-flex md1>
@@ -129,8 +129,9 @@ export default {
 }
 
 .logo-container {
-    padding-bottom: 0;
-    padding-top: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    /* padding-top: 0; */
 }
 
 .button-container{
