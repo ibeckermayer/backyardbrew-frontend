@@ -25,9 +25,9 @@
         <v-container app hidden-sm-and-down class="nav-bar" fluid pa-0>
             <v-layout align-center row fill-height>
                 <v-flex md2>
-                    <v-container >
-                        <v-layout align-center row fill-height>
-                            <v-flex align-self-center>
+                    <v-container class="logo-container">
+                        <v-layout row fill-height>
+                            <v-flex>
                                 <router-link to="/">
                                     <img src="@/assets/aoc_coffee.jpg" height="100px">
                                 </router-link>
@@ -37,7 +37,7 @@
                 </v-flex>
                 <v-flex md9>
                     <v-container class="button-container">
-                        <v-layout align-center justify-space-around="" row fill-height>
+                        <v-layout justify-space-around row fill-height>
                             <v-flex md1>
                                 <v-btn active-class="custom_button" to="/brew" flat v-ripple="{ class: `brown--text` }">Brew</v-btn>
                             </v-flex>
@@ -120,6 +120,11 @@ export default {
     background-color: #FFFFFF;
     padding: 0;
     max-height: 150px;
+}
+
+.logo-container {
+    padding-bottom: 0;
+    padding-top: 0;
 }
 
 .button-container{
