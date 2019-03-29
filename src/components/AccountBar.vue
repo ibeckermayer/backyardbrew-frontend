@@ -7,13 +7,9 @@
                         <v-flex text-md-center md1>
                             <a>Contact</a>
                         </v-flex>
-                        <!-- <v-flex text-md-center md2 style="color: white;">|</v-flex> -->
                         <v-flex text-md-center md1>
-                            <!-- <v-btn small flat active-class="custom_button" to="/brew" v-ripple="{ class: `brown--text` }">Login</v-btn> -->
                             <a>Register</a>
                         </v-flex>
-                        <!-- <v-flex md2 text-md-center>or</v-flex> -->
-                        <!-- <v-flex text-md-center md2 style="color: white;"></v-flex> -->
                         <v-flex text-md-center md1>
                             <a>Login</a>
                         </v-flex>
@@ -23,8 +19,6 @@
                         <v-flex text-md-center md1>
                             <a>Account</a>
                         </v-flex>
-                        
-                        <!-- <v-flex text-md-center md2 style="color: white;">|</v-flex> -->
                     </v-layout>
                 </v-container>
             </v-flex>
