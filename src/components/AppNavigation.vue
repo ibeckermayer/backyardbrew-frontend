@@ -1,5 +1,6 @@
 <template>
     <span>
+        <AccountBar></AccountBar>
         <v-container app hidden-md-and-up pa-0>
             <v-toolbar color="#FFFFFF" light="">
                 <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -39,25 +40,25 @@
                     <v-container class="button-container">
                         <v-layout justify-space-around row fill-height>
                             <v-flex md1>
-                                <v-btn active-class="custom_button" to="/brew" flat v-ripple="{ class: `brown--text` }">Brew</v-btn>
+                                <v-btn active-class="custom-button" to="/brew" flat v-ripple="{ class: `brown--text` }">Brew</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom_button" to="/bistro" flat v-ripple="{ class: `brown--text` }">Bistro</v-btn>
+                                <v-btn active-class="custom-button" to="/bistro" flat v-ripple="{ class: `brown--text` }">Bistro</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom_button" to="/roasting" flat v-ripple="{ class: `brown--text` }">Roasting</v-btn>
+                                <v-btn active-class="custom-button" to="/roasting" flat v-ripple="{ class: `brown--text` }">Roasting</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom_button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">About</v-btn>
+                                <v-btn active-class="custom-button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">About</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom_button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">Retail</v-btn>
+                                <v-btn active-class="custom-button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">Retail</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom_button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">R&D</v-btn>
+                                <v-btn active-class="custom-button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">R&D</v-btn>
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom_button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">Tech</v-btn>
+                                <v-btn active-class="custom-button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">Tech</v-btn>
                             </v-flex>
                             <v-flex md1>
                                 <v-btn color="#8D6E63" dark href="https://aoccoffee.com/collections/all" v-ripple="{ class: `brown--text` }">Order</v-btn>
@@ -71,6 +72,8 @@
  </template>
 
 <script>
+import AccountBar from '@/components/AccountBar'
+
 export default {
     data() {
         return {
@@ -111,7 +114,10 @@ export default {
             ]            
         }
     },
-    name: 'AppNavigation'
+    name: 'AppNavigation',
+    components: {
+        AccountBar
+    }
 };
 </script>
 
@@ -145,7 +151,7 @@ a {
     color: #8D6E63;
 }
 
-.custom_button {
+.custom-button {
     background: rgba(141, 110, 99, 0.3);
 }
 </style>
