@@ -5,7 +5,7 @@
                 <v-container class="button-container" fluid>
                     <v-layout justify-end row fill-height>
                         <v-flex text-md-center md1>
-                            <a>Contact</a>
+                            <a href="#contact">Contact</a>
                         </v-flex>
                         <v-flex text-md-center md1>
                             <a>Register</a>
@@ -44,7 +44,7 @@ export default {
 a {
     margin: 0;
     padding: 0;
-    /* text-decoration: none; */
+    text-decoration: none;
 
 }
 
