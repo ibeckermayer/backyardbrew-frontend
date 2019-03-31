@@ -1,6 +1,6 @@
 <template>
     <span>
-        <AccountBar></AccountBar>
+        <account-bar></account-bar>
         <v-container app hidden-md-and-up pa-0>
             <v-toolbar color="#FFFFFF" light="">
                 <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>

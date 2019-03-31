@@ -1,8 +1,8 @@
 <template>
     <v-container fluid fill-height class="home">
         <v-layout class="home-filter" justify-center column pa-5>
-            <HomeTitle></HomeTitle>
-            <HomeCards></HomeCards>
+            <home-title></home-title>
+            <home-cards></home-cards>
         </v-layout>
     </v-container>
 </template>

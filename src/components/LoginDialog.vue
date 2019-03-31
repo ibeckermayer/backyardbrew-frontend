@@ -4,7 +4,6 @@
             <v-card-title>
                 <span class="headline">Login</span>
                 <v-spacer></v-spacer>
-
             </v-card-title>
             <v-card-text>
                 <v-container grid-list-md>
@@ -30,7 +29,6 @@
 </template>
 
 <script>
-
 export default {
     name: 'LoginDialog',
     props: ['show'],

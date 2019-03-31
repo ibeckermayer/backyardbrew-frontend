@@ -1,5 +1,5 @@
 <template>
-    <FullPageMenuImg :menu="image" :backgroundImage="bgimage"></FullPageMenuImg>
+    <full-page-menu-img :menu="image" :backgroundImage="bgimage"></full-page-menu-img>
 </template>
 
 <script>
