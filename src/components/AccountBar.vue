@@ -1,5 +1,5 @@
 <template>
-    <v-container app hidden-sm-and-down class="account-bar" fluid pa-0 >
+    <v-container app hidden-sm-and-down class="account-bar" fluid pa-0>
         <v-layout align-center row fill-height>
             <v-flex md12 elevation-1 class="account-bar-flex">
                 <v-container class="button-container" fluid>
@@ -7,9 +7,7 @@
                         <v-flex text-md-center md1>
                             <a href="#contact">Contact</a>
                         </v-flex>
-                        <v-flex text-md-center md1>
-                            <a>Register</a>
-                        </v-flex>
+                        <RegisterDialogueLink></RegisterDialogueLink>
                         <v-flex text-md-center md1>
                             <a>Login</a>
                         </v-flex>
@@ -27,8 +25,18 @@
 </template>
 
 <script>
+import RegisterDialogueLink from '@/components/RegisterDialogueLink'
+
 export default {
-    name: 'AccountBar'
+    name: 'AccountBar',
+    data () {
+      return {
+            dialog: false
+        }
+    },
+    components: {
+        RegisterDialogueLink
+    }
 }
 </script>
 
@@ -45,13 +53,7 @@ a {
     margin: 0;
     padding: 0;
     text-decoration: none;
-
-}
-
-.flex.md2, a{
-    flex-basis: 4%;
     color: white;
-    /* font-weight: bold; */
 }
 
 </style>
