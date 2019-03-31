@@ -9,10 +9,23 @@
                 <v-container grid-list-md>
                     <v-layout wrap>
                         <v-flex xs12>
-                            <v-text-field color="primary" label="Email" required></v-text-field>
+                            <v-text-field
+                            v-model="email"
+                            color="primary" 
+                            label="Email" 
+                            required 
+                            >
+                            </v-text-field>
                         </v-flex>
                         <v-flex xs12>
-                            <v-text-field color="primary" label="Password" type="password" required></v-text-field>
+                            <v-text-field 
+                            v-model="password"
+                            color="primary"     
+                            label="Password" 
+                            type="password" 
+                            required 
+                            >
+                            </v-text-field>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -20,7 +33,7 @@
             <v-card-actions>
             <v-container>
                 <v-layout justify-center align-center>
-            <v-btn color="primary" dark @click="$emit('loginClose')" text-md-center>Login</v-btn>
+                    <v-btn color="primary" dark @click="submit" text-md-center>Login</v-btn>
                 </v-layout>
             </v-container>
             </v-card-actions>
@@ -33,7 +46,24 @@ export default {
     name: 'LoginDialog',
     props: ['show'],
     data () {
-      return {
+        return {
+            email: null,
+            password: null,
+        }
+    },
+    computed: {
+        form () {
+            return {
+                email: this.email,
+                password: this.password
+            }
+        }
+    },
+    methods: {
+        submit () {
+            Object.keys(this.form).forEach(f => {
+                console.log(this.form[f])
+            })
         }
     }
 }
