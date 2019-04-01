@@ -1,7 +1,7 @@
 <template>
     <span>
         <!-- Bar layout -->
-        <v-container app hidden-sm-and-down class="account-bar" fluid pa-0>
+        <v-container app class="account-bar" fluid pa-0>
             <v-layout align-center row fill-height>
                 <v-flex md12 elevation-1 class="account-bar-flex">
                     <v-container class="button-container" fluid>
