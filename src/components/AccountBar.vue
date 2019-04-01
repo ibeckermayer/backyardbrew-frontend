@@ -13,7 +13,7 @@
                                 <a @click.prevent="loginShow = true">Login</a>
                             </v-flex>
                             <v-flex text-md-center md1>
-                                <a>Register</a>
+                                <a @click.prevent="registerShow = true">Register</a>
                             </v-flex>
                             <v-flex text-md-center md1>
                                 <a>Cart</a>
@@ -29,20 +29,24 @@
 
         <!-- Dialogs -->
         <login-dialog v-bind:show='loginShow' @loginClose='loginShow = false'></login-dialog>
+        <register-dialog v-bind:show='registerShow' @registerClose='registerShow = false'></register-dialog>
     </span>
 </template>
 
 <script>
 import LoginDialog from '@/components/LoginDialog'
+import RegisterDialog from '@/components/RegisterDialog'
 
 export default {
     name: 'AccountBar',
     components: {
         LoginDialog,
+        RegisterDialog
     },
     data () {
         return {
-            loginShow: false
+            loginShow: false,
+            registerShow: false
         }
     }
 }
