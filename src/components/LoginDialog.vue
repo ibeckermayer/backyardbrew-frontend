@@ -10,6 +10,7 @@
                     <v-layout wrap>
                         <v-flex xs12>
                             <v-text-field
+                            validate-on-blur
                             ref="email"
                             v-model="form.email"
                             color="primary" 
@@ -21,6 +22,7 @@
                         </v-flex>
                         <v-flex xs12>
                             <v-text-field 
+                            validate-on-blur
                             ref="password"
                             v-model="form.password"
                             color="primary"     
