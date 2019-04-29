@@ -124,7 +124,9 @@ export default {
                 console.log("Form has errors!");
             }
             else {
-                axios.post('http://127.0.0.1:5000/api/registration', {
+                const REGISTER_URL = process.env.VUE_APP_API_BASE_URL + '/registration';
+                console.log(process.env.VUE_APP_API_BASE_URL);
+                axios.post(REGISTER_URL, {
                     first_name: this.form['firstName'],
                     last_name: this.form['lastName'],
                     email: this.form['email'],
