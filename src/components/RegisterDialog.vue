@@ -1,5 +1,5 @@
 <template>
-    <v-dialog :value="show" @input="$emit('registerClose')" width="800" scrollable>
+    <v-dialog :value="show" @input="$emit('registerClose'); " width="800" scrollable>
         <v-card>
             <v-card-title>
                 <span class="headline">Register</span>
@@ -40,6 +40,7 @@
                             color="primary" 
                             label="Email" 
                             required
+                            :error-messages="this.emailInUse"
                             :rules="[rules.reqd, rules.vemail]"
                             >
                             </v-text-field>
@@ -85,11 +86,15 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { constants } from 'crypto';
+
 export default {
     name: 'RegisterDialog',
     props: ['show'],
     data () {
         return {
+            emailInUse: [],
             form: {
                 firstName: null,
                 lastName: null,
@@ -102,7 +107,6 @@ export default {
                 min8: val => (val || '').length >= 8 || 'Minimum 8 characters',
                 vemail: val => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(String(val).toLowerCase()) || 'Please enter valid email',
                 pwdconf: val => val == this.form.password || 'Passwords do not match'
-
             },
             hasErrors: false
         }
@@ -120,11 +124,20 @@ export default {
                 console.log("Form has errors!");
             }
             else {
-                for (let key in this.form) {
-                    console.log(this.form[key]);
-                }
+                axios.post('http://127.0.0.1:5000/api/registration', {
+                    first_name: this.form['firstName'],
+                    last_name: this.form['lastName'],
+                    email: this.form['email'],
+                    password: this.form['password']
+                })
+                .then(response => {})
+                .catch(error => {
+                    if (error.response.status == 409) {
+                        this.emailInUse = 'Email address already in use'
+                    }
+                });
             }
-        }
+        },
     }
 }
 </script>
