@@ -1,6 +1,13 @@
 <template>
     <v-dialog :value="show" @input="$emit('registerClose'); " width="800" scrollable>
+        
         <v-card>
+            <v-alert
+            :value="regSucc"
+            type="success"
+            >
+            Registration successful. Please login to continue to account.
+            </v-alert>
             <v-card-title>
                 <span class="headline">Register</span>
                 <v-spacer></v-spacer>
@@ -94,6 +101,7 @@ export default {
     props: ['show'],
     data () {
         return {
+            regSucc: false,
             emailInUse: [],
             form: {
                 firstName: null,
@@ -132,7 +140,7 @@ export default {
                     email: this.form['email'],
                     password: this.form['password']
                 })
-                .then(response => {})
+                .then(response => {this.regSucc = true})
                 .catch(error => {
                     if (error.response.status == 409) {
                         this.emailInUse = 'Email address already in use'
