@@ -16,6 +16,7 @@
                             color="primary" 
                             label="Email" 
                             required
+                            :error-messages="emailDNE"
                             :rules="[rules.reqd, rules.vemail]"
                             >
                             </v-text-field>
@@ -29,6 +30,7 @@
                             label="Password" 
                             type="password" 
                             required 
+                            :error-messages="pwdIncorrect"
                             :rules="[rules.reqd]"
                             >
                             </v-text-field>
@@ -48,18 +50,20 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     name: 'LoginDialog',
     props: ['show'],
     data () {
         return {
+            emailDNE: [],
+            pwdIncorrect: [],
             form: {
                 email: null,
                 password: null
             },
             rules: {
                 reqd: val => !!val || 'This field is required',
-                min8: val => (val || '').length >= 8 || 'Minimum 8 characters',
                 vemail: val => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(String(val).toLowerCase()) || 'Please enter valid email'
             },
             hasErrors: false
@@ -81,6 +85,26 @@ export default {
                 for (let key in this.form) {
                     console.log(this.form[key]);
                 }
+                const LOGIN_URL = process.env.VUE_APP_API_BASE_URL + '/login';
+                axios.post(LOGIN_URL, {
+                    email: this.form['email'],
+                    password: this.form['password']
+                })
+                .then(response => {
+                    this.$store.commit('setFirstName', response.data.user.first_name);
+                    this.$store.commit('setLastName', response.data.user.last_name);
+                    this.$store.commit('setEmail', response.data.user.email);
+                    this.$store.commit('setJwtAccess', response.data.user.jwtAccess);
+                    this.$store.commit('setJwtRefresh', response.data.user.jwtRefresh);
+                })
+                .catch(error => {
+                    if (error.response.status == 404) {
+                        this.emailDNE = 'No user with this email is registered'
+                    }
+                    if (error.response.status == 401) {
+                        this.pwdIncorrect = 'Password incorrect'
+                    }
+                });
             }
         }
     }

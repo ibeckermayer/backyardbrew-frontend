@@ -2,7 +2,7 @@
     <v-dialog :value="show" @input="$emit('registerClose'); " width="800" scrollable>
         
         <v-card>
-            <v-alert
+            <v-alert class="w-100 pa-0 ma-0"
             :value="regSucc"
             type="success"
             >
@@ -133,7 +133,6 @@ export default {
             }
             else {
                 const REGISTER_URL = process.env.VUE_APP_API_BASE_URL + '/registration';
-                console.log(process.env.VUE_APP_API_BASE_URL);
                 axios.post(REGISTER_URL, {
                     first_name: this.form['firstName'],
                     last_name: this.form['lastName'],
