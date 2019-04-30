@@ -22,7 +22,7 @@ npm run test
 
 ### Lints and fixes files
 ```
-npm run lint
+npx vue-cli-service lint
 ```
 
 ### Customize configuration
