@@ -1,5 +1,10 @@
 <template>
-    <v-dialog :value="show" @input="$emit('registerClose')" width="800" scrollable>
+    <v-dialog
+        :value="show"
+        @input="$emit('registerClose')"
+        width="800"
+        :fullscreen="$vuetify.breakpoint.smAndDown"
+    >
         <v-card>
             <v-alert class="w-100 pa-0 ma-0" :value="regSucc" type="success">
                 Registration successful. Please login to continue to account.
@@ -81,6 +86,7 @@
                 <v-container>
                     <v-layout justify-center align-center>
                         <v-btn color="primary" dark @click="submit" text-md-center>Register</v-btn>
+                        <v-btn color="secondary" @click="close" text-md-center>Close</v-btn>
                     </v-layout>
                 </v-container>
             </v-card-actions>
@@ -97,7 +103,7 @@ export default {
     props: ['show'],
     data() {
         return {
-            regSucc: true,
+            regSucc: false,
             emailInUse: [],
             form: {
                 firstName: null,
@@ -125,6 +131,7 @@ export default {
             for (let key in this.form) {
                 if (!this.$refs[key].validate(true)) {
                     this.hasErrors = true;
+                    console.log('error on ' + key);
                 }
             }
             if (this.hasErrors) {
@@ -143,10 +150,22 @@ export default {
                     })
                     .catch(error => {
                         if (error.response.status == 409) {
-                            this.emailInUse = ['Email address already in use']; 
+                            this.emailInUse = ['Email address already in use'];
                         }
                     });
             }
+        },
+        clearForm() {
+            this.form['firstName'] = null;
+            this.form['lastName'] = null;
+            this.form['email'] = null;
+            this.form['password'] = null;
+            this.form['confPassword'] = null;
+            this.regSucc = false;
+        },
+        close() {
+            this.clearForm();
+            this.$emit('registerClose');
         }
     }
 };

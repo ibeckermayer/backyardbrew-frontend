@@ -1,5 +1,10 @@
 <template>
-    <v-dialog :value="show" @input="$emit('loginClose')" width="800">
+    <v-dialog
+        :value="show"
+        @input="$emit('loginClose')"
+        width="800"
+        :fullscreen="$vuetify.breakpoint.smAndDown"
+    >
         <v-card>
             <v-alert class="w-100 pa-0 ma-0" :value="logSucc" type="success">
                 Login successful!
@@ -45,6 +50,7 @@
                 <v-container>
                     <v-layout justify-center align-center>
                         <v-btn color="primary" dark @click="submit" text-md-center>Login</v-btn>
+                        <v-btn color="secondary" @click="close" text-md-center>Close</v-btn>
                     </v-layout>
                 </v-container>
             </v-card-actions>
@@ -114,6 +120,14 @@ export default {
                         }
                     });
             }
+        },
+        clearForm() {
+            this.form['email'] = null;
+            this.form['password'] = null;
+        },
+        close() {
+            this.clearForm();
+            this.$emit('loginClose');
         }
     }
 };
