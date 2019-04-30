@@ -8,20 +8,20 @@
                     <v-toolbar-title class="centered">ALLOUTCOMES COFFEE</v-toolbar-title>
                 </router-link>
             </v-toolbar>
-                <v-navigation-drawer v-model="drawer" app>
-                    <v-list>
-                        <template v-for="(item, index) in nav_labels">
-                            <v-list-tile :key="index" :to="item.route">
-                                <v-list-tile-content>
-                                    <div class="tile-content">
-                                        {{item.nav_label}}
-                                    </div>
-                                </v-list-tile-content>
-                            </v-list-tile>
-                            <v-divider :key="`divider-${index}`"></v-divider>
-                        </template>
-                    </v-list>
-                </v-navigation-drawer>
+            <v-navigation-drawer v-model="drawer" app>
+                <v-list>
+                    <template v-for="(item, index) in nav_labels">
+                        <v-list-tile :key="index" :to="item.route">
+                            <v-list-tile-content>
+                                <div class="tile-content">
+                                    {{ item.nav_label }}
+                                </div>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                        <v-divider :key="`divider-${index}`"></v-divider>
+                    </template>
+                </v-list>
+            </v-navigation-drawer>
         </v-container>
         <v-container app hidden-sm-and-down class="nav-bar" fluid pa-0>
             <v-layout align-center row fill-height>
@@ -30,7 +30,7 @@
                         <v-layout row fill-height>
                             <v-flex>
                                 <router-link to="/">
-                                    <img src="@/assets/aoc_coffee.jpg" height="100px">
+                                    <img src="@/assets/aoc_coffee.jpg" height="100px" />
                                 </router-link>
                             </v-flex>
                         </v-layout>
@@ -40,28 +40,76 @@
                     <v-container class="button-container">
                         <v-layout justify-space-around row fill-height>
                             <v-flex md1>
-                                <v-btn active-class="custom-button" to="/brew" flat v-ripple="{ class: `brown--text` }">Brew</v-btn>
+                                <v-btn
+                                    active-class="custom-button"
+                                    to="/brew"
+                                    flat
+                                    v-ripple="{ class: `brown--text` }"
+                                    >Brew</v-btn
+                                >
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom-button" to="/bistro" flat v-ripple="{ class: `brown--text` }">Bistro</v-btn>
+                                <v-btn
+                                    active-class="custom-button"
+                                    to="/bistro"
+                                    flat
+                                    v-ripple="{ class: `brown--text` }"
+                                    >Bistro</v-btn
+                                >
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom-button" to="/roasting" flat v-ripple="{ class: `brown--text` }">Roasting</v-btn>
+                                <v-btn
+                                    active-class="custom-button"
+                                    to="/roasting"
+                                    flat
+                                    v-ripple="{ class: `brown--text` }"
+                                    >Roasting</v-btn
+                                >
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom-button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">About</v-btn>
+                                <v-btn
+                                    active-class="custom-button"
+                                    to="/under_construction"
+                                    flat
+                                    v-ripple="{ class: `brown--text` }"
+                                    >About</v-btn
+                                >
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom-button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">Retail</v-btn>
+                                <v-btn
+                                    active-class="custom-button"
+                                    to="/under_construction"
+                                    flat
+                                    v-ripple="{ class: `brown--text` }"
+                                    >Retail</v-btn
+                                >
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom-button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">R&D</v-btn>
+                                <v-btn
+                                    active-class="custom-button"
+                                    to="/under_construction"
+                                    flat
+                                    v-ripple="{ class: `brown--text` }"
+                                    >R&D</v-btn
+                                >
                             </v-flex>
                             <v-flex md1>
-                                <v-btn active-class="custom-button" to="/under_construction" flat v-ripple="{ class: `brown--text` }">Tech</v-btn>
+                                <v-btn
+                                    active-class="custom-button"
+                                    to="/under_construction"
+                                    flat
+                                    v-ripple="{ class: `brown--text` }"
+                                    >Tech</v-btn
+                                >
                             </v-flex>
                             <v-flex md1>
-                                <v-btn color="#8D6E63" dark href="https://aoccoffee.com/collections/all" v-ripple="{ class: `brown--text` }">Order</v-btn>
+                                <v-btn
+                                    color="#8D6E63"
+                                    dark
+                                    href="https://aoccoffee.com/collections/all"
+                                    v-ripple="{ class: `brown--text` }"
+                                    >Order</v-btn
+                                >
                             </v-flex>
                         </v-layout>
                     </v-container>
@@ -69,10 +117,10 @@
             </v-layout>
         </v-container>
     </span>
- </template>
+</template>
 
 <script>
-import AccountBar from '@/components/AccountBar'
+import AccountBar from '@/components/AccountBar';
 
 export default {
     data() {
@@ -84,7 +132,7 @@ export default {
                     route: '/brew'
                 },
                 {
-                    nav_label: 'Bistro', 
+                    nav_label: 'Bistro',
                     route: '/bistro'
                 },
                 {
@@ -110,9 +158,9 @@ export default {
                 {
                     nav_label: 'Order',
                     route: '/under_construction'
-                },
-            ]            
-        }
+                }
+            ]
+        };
     },
     name: 'AppNavigation',
     components: {
@@ -122,8 +170,8 @@ export default {
 </script>
 
 <style scoped>
-.nav-bar{
-    background-color: #FFFFFF;
+.nav-bar {
+    background-color: #ffffff;
     padding: 0;
     max-height: 150px;
 }
@@ -134,7 +182,7 @@ export default {
     /* padding-top: 0; */
 }
 
-.button-container{
+.button-container {
     padding: 0;
 }
 
@@ -149,7 +197,7 @@ a {
 }
 
 .v-btn:hover::before {
-    color: #8D6E63;
+    color: #8d6e63;
 }
 
 .custom-button {

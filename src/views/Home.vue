@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import HomeTitle from '@/components/HomeTitle'
-import HomeCards from '@/components/HomeCards'
+import HomeTitle from '@/components/HomeTitle';
+import HomeCards from '@/components/HomeCards';
 
 export default {
     name: 'Home',
@@ -27,9 +27,9 @@ export default {
     width: 100%;
     height: 100%;
     padding: 0;
-    background-position:center;
+    background-position: center;
 }
-.home-filter{
-    background:rgba(62, 39, 35, 0.3);
+.home-filter {
+    background: rgba(62, 39, 35, 0.3);
 }
 </style>

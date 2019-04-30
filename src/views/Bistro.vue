@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import FullPageMenuImg from '@/components/FullPageMenuImg'
+import FullPageMenuImg from '@/components/FullPageMenuImg';
 
 export default {
     name: 'Bistro',
@@ -13,12 +13,10 @@ export default {
     data() {
         return {
             image: require('@/assets/bistro_menu.png'),
-            bgimage: require('@/assets/landing_coffee_3.jpg')            
-        }
+            bgimage: require('@/assets/landing_coffee_3.jpg')
+        };
     }
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

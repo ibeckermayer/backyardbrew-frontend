@@ -28,14 +28,17 @@
         </v-container>
 
         <!-- Dialogs -->
-        <login-dialog v-bind:show='loginShow' @loginClose='loginShow = false'></login-dialog>
-        <register-dialog v-bind:show='registerShow' @registerClose='registerShow = false'></register-dialog>
+        <login-dialog v-bind:show="loginShow" @loginClose="loginShow = false"></login-dialog>
+        <register-dialog
+            v-bind:show="registerShow"
+            @registerClose="registerShow = false"
+        ></register-dialog>
     </span>
 </template>
 
 <script>
-import LoginDialog from '@/components/LoginDialog'
-import RegisterDialog from '@/components/RegisterDialog'
+import LoginDialog from '@/components/LoginDialog';
+import RegisterDialog from '@/components/RegisterDialog';
 
 export default {
     name: 'AccountBar',
@@ -43,13 +46,13 @@ export default {
         LoginDialog,
         RegisterDialog
     },
-    data () {
+    data() {
         return {
             loginShow: false,
             registerShow: false
-        }
+        };
     }
-}
+};
 </script>
 
 <style scoped>
@@ -58,7 +61,7 @@ export default {
     padding-bottom: 0;
 }
 .account-bar {
-    background-color: #8D6E63;
+    background-color: #8d6e63;
 }
 
 a {
@@ -68,6 +71,4 @@ a {
     color: white;
     font-weight: bold;
 }
-
 </style>
-

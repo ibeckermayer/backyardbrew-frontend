@@ -1,21 +1,17 @@
 <template>
     <v-container fluid fill-height :style="stylea" class="full-page-menu-img">
         <v-layout class="fpmi-filter" column wrap fill-height align-center justify-center>
-            <v-flex class="img-flex" md8 :class="{'pa-5': $vuetify.breakpoint.mdAndUp}">
+            <v-flex class="img-flex" md8 :class="{ 'pa-5': $vuetify.breakpoint.mdAndUp }">
                 <img :src="menu" width="100%" />
             </v-flex>
         </v-layout>
     </v-container>
-
 </template>
 
 <script>
 export default {
     name: 'FullPageMenuImg',
-    props: [
-        'menu',
-        'backgroundImage'
-    ],
+    props: ['menu', 'backgroundImage'],
     computed: {
         stylea() {
             return 'background-image: url(' + this.backgroundImage + ')';
@@ -26,7 +22,7 @@ export default {
 
 <style scoped>
 .fpmi-filter {
-    background:rgba(62, 39, 35, 0.3);
+    background: rgba(62, 39, 35, 0.3);
 }
 .full-page-menu-img {
     background-size: cover;

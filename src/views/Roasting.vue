@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import FullPageMenuImg from '@/components/FullPageMenuImg'
+import FullPageMenuImg from '@/components/FullPageMenuImg';
 
 export default {
     name: 'Roasting',
@@ -14,11 +14,9 @@ export default {
         return {
             image: require('@/assets/roasting_menu.png'),
             bgimage: require('@/assets/landing_coffee_1.jpg')
-        }
+        };
     }
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

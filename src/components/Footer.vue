@@ -1,5 +1,5 @@
 <template>
-    <v-container app class="footer" fluid pa-0 >
+    <v-container app class="footer" fluid pa-0>
         <v-layout align-start row fill-height>
             <v-flex xs6>
                 <v-container fluid>
@@ -8,7 +8,10 @@
                             <h3>Partners</h3>
                         </v-flex>
                         <v-flex text-xs-center xs1>
-                            <p>All photography by <a href="https://stefanradev.co/">Stefan Radev</a></p>
+                            <p>
+                                All photography by
+                                <a href="https://stefanradev.co/">Stefan Radev</a>
+                            </p>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -29,7 +32,6 @@
                     </v-layout>
                 </v-container>
             </v-flex>
-            
         </v-layout>
     </v-container>
 </template>
@@ -37,7 +39,7 @@
 <script>
 export default {
     name: 'Footer'
-}
+};
 </script>
 
 <style scoped>
@@ -56,6 +58,4 @@ a {
     color: black;
     font-weight: 500;
 }
-
 </style>
-

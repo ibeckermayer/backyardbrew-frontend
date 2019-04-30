@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style>
-.v-content{
+.v-content {
     padding: 0;
 }
 </style>

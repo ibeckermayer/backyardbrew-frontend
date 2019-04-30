@@ -11,24 +11,24 @@ export default new Vuex.Store({
             lastName: '',
             email: '',
             jwtAccess: '',
-            jwtfRefresh: '',
+            jwtfRefresh: ''
         }
     },
     mutations: {
         setFirstName(state, firstName) {
-            state.user.firstName = firstName
+            state.user.firstName = firstName;
         },
         setLastName(state, lastName) {
-            state.user.lastName = lastName
+            state.user.lastName = lastName;
         },
         setEmail(state, email) {
-            state.user.email = email
+            state.user.email = email;
         },
         setJwtAccess(state, jwtAccess) {
-            state.user.jwtAccess = jwtAccess
+            state.user.jwtAccess = jwtAccess;
         },
         setJwtRefresh(state, jwtRefresh) {
-            state.user.jwtRefresh = jwtRefresh
+            state.user.jwtRefresh = jwtRefresh;
         },
         resetUser(state) {
             state.user.firstName = '';
