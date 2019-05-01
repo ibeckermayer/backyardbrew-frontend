@@ -1,7 +1,7 @@
 <template>
     <v-container app class="footer" fluid pa-0>
         <v-layout align-start row fill-height>
-            <v-flex xs6>
+            <v-flex xs4>
                 <v-container fluid>
                     <v-layout column fill-height>
                         <v-flex text-xs-center xs1>
@@ -16,7 +16,7 @@
                     </v-layout>
                 </v-container>
             </v-flex>
-            <v-flex xs6>
+            <v-flex xs4>
                 <v-container fluid>
                     <v-layout column fill-height>
                         <v-flex text-xs-center xs1>
@@ -28,6 +28,22 @@
                         </v-flex>
                         <v-flex text-xs-center xs1>
                             <p>(650) 704-7785</p>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-flex>
+            <v-flex xs4>
+                <v-container fluid>
+                    <v-layout column fill-height>
+                        <v-flex text-xs-center xs1>
+                            <a name="contact"></a>
+                            <h3>Feedback?</h3>
+                        </v-flex>
+                        <v-flex text-xs-center xs1>
+                            <p>Feel free to leave us feedback through our</p>
+                        </v-flex>
+                        <v-flex text-xs-center xs1>
+                            <router-link to="/feedback">Feedback Form</router-link>
                         </v-flex>
                     </v-layout>
                 </v-container>
@@ -51,10 +67,14 @@ export default {
     background-color: white;
 }
 
+p {
+    margin: 0;
+}
+
 a {
     margin: 0;
     padding: 0;
-    text-decoration: none;
+    text-decoration: underline;
     color: black;
     font-weight: 500;
 }
