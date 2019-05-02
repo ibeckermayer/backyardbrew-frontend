@@ -94,9 +94,6 @@ export default {
             if (this.hasErrors) {
                 console.log('Form has errors!');
             } else {
-                for (let key in this.form) {
-                    console.log(this.form[key]);
-                }
                 const LOGIN_URL = process.env.VUE_APP_API_BASE_URL + '/login';
                 axios
                     .post(LOGIN_URL, {
@@ -110,8 +107,6 @@ export default {
                         this.$store.commit('setRole', response.data.user.role);
                         this.$store.commit('setJwtAccess', response.data.access_token);
                         this.$store.commit('setJwtRefresh', response.data.refresh_token);
-                        console.log(response.data.access_token);
-                        console.log(typeof(response.data.access_token));
                         this.logSucc = true;
                     })
                     .catch(error => {

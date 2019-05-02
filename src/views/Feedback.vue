@@ -10,6 +10,18 @@
                     <v-card-text>
                         <v-container grid-list-md>
                             <v-layout wrap>
+                                <v-flex>
+                                    <v-text-field
+                                        validate-on-blur
+                                        ref="name"
+                                        color="primary"
+                                        label="Name"
+                                        v-model="form.name"
+                                        required
+                                        :rules="[rules.reqd]"
+                                    >
+                                    </v-text-field>
+                                </v-flex>
                                 <v-flex xs12>
                                     <v-text-field
                                         validate-on-blur
@@ -62,6 +74,7 @@ export default {
                     ) || 'Please enter valid email'
             },
             form: {
+                name: null,
                 email: null,
                 feedback: null
             }
