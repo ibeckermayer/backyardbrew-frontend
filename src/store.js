@@ -11,7 +11,7 @@ export default new Vuex.Store({
             email: '',
             role: '',
             jwtAccess: '',
-            jwtfRefresh: ''
+            jwtRefresh: ''
         }
     },
     mutations: {
@@ -39,7 +39,7 @@ export default new Vuex.Store({
             state.user.email = '';
             state.user.role = '';
             state.user.jwtAccess = '';
-            state.user.jwtfRefresh = '';
+            state.user.jwtRefresh = '';
         }
     },
     actions: {},
@@ -49,6 +49,6 @@ export default new Vuex.Store({
         email: state => state.user.email,
         role: state => state.user.role,
         jwtAccess: state => state.user.jwtAccess,
-        jwtfRefresh: state => state.user.jwtfRefresh
+        jwtRefresh: state => state.user.jwtRefresh
     }
 });
