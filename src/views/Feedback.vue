@@ -1,56 +1,58 @@
 <template>
-<v-container>
-    <v-layout justify-center>
-        <v-flex md8>
-            <v-card flat>
-                <v-card-title>
-                    <span class="headline">Feedback</span>
-                    <v-spacer></v-spacer>
-                </v-card-title>
-                <v-card-text>
-                    <v-container grid-list-md>
-                        <v-layout wrap>
-                            <v-flex xs12>
-                                <v-text-field
-                                    validate-on-blur
-                                    ref="email"
-                                    color="primary"
-                                    label="Email"
-                                    v-model="form.email"
-                                    required
-                                    :rules="[rules.reqd, rules.vemail]"
+    <v-container>
+        <v-layout justify-center>
+            <v-flex md8>
+                <v-card flat>
+                    <v-card-title>
+                        <span class="headline">Feedback</span>
+                        <v-spacer></v-spacer>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-container grid-list-md>
+                            <v-layout wrap>
+                                <v-flex xs12>
+                                    <v-text-field
+                                        validate-on-blur
+                                        ref="email"
+                                        color="primary"
+                                        label="Email"
+                                        v-model="form.email"
+                                        required
+                                        :rules="[rules.reqd, rules.vemail]"
+                                    >
+                                    </v-text-field>
+                                </v-flex>
+                                <v-flex xs12>
+                                    <v-textarea
+                                        ref="feedback"
+                                        label="Feedback"
+                                        :rules="[rules.reqd]"
+                                        v-model="form.feedback"
+                                    >
+                                    </v-textarea>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-container>
+                            <v-layout justify-center align-center>
+                                <v-btn color="primary" dark @click="submit" text-md-center
+                                    >Submit</v-btn
                                 >
-                                </v-text-field>
-                            </v-flex>
-                            <v-flex xs12>
-                                <v-textarea
-                                    ref="feedback"
-                                    label="Feedback"
-                                    :rules="[rules.reqd]"
-                                    v-model="form.feedback"
-                                >
-                                </v-textarea>
-                            </v-flex>
-                        </v-layout>
-                    </v-container>
-                </v-card-text>
-                <v-card-actions>
-                    <v-container>
-                        <v-layout justify-center align-center>
-                            <v-btn color="primary" dark @click="submit" text-md-center>Submit</v-btn>
-                        </v-layout>
-                    </v-container>
-                </v-card-actions>
-            </v-card> 
-        </v-flex>
-    </v-layout>   
-</v-container>
+                            </v-layout>
+                        </v-container>
+                    </v-card-actions>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>
 export default {
     name: 'Feedback',
-    data () {
+    data() {
         return {
             rules: {
                 reqd: val => !!val || 'This field is required',
@@ -81,9 +83,7 @@ export default {
             }
         }
     }
-}
+};
 </script>
 
-<style scoped>
-</style>
-
+<style scoped></style>

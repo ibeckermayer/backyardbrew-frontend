@@ -9,6 +9,7 @@ export default new Vuex.Store({
             firstName: '',
             lastName: '',
             email: '',
+            role: '',
             jwtAccess: '',
             jwtfRefresh: ''
         }
@@ -29,10 +30,14 @@ export default new Vuex.Store({
         setJwtRefresh(state, jwtRefresh) {
             state.user.jwtRefresh = jwtRefresh;
         },
+        setRole(state, role) {
+            state.user.role = role;
+        },
         resetUser(state) {
             state.user.firstName = '';
             state.user.lastName = '';
             state.user.email = '';
+            state.user.role = '';
             state.user.jwtAccess = '';
             state.user.jwtfRefresh = '';
         }
@@ -42,6 +47,7 @@ export default new Vuex.Store({
         firstName: state => state.user.firstName,
         lastName: state => state.user.lastName,
         email: state => state.user.email,
+        role: state => state.user.role,
         jwtAccess: state => state.user.jwtAccess,
         jwtfRefresh: state => state.user.jwtfRefresh
     }

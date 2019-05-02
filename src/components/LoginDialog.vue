@@ -107,8 +107,11 @@ export default {
                         this.$store.commit('setFirstName', response.data.user.first_name);
                         this.$store.commit('setLastName', response.data.user.last_name);
                         this.$store.commit('setEmail', response.data.user.email);
-                        this.$store.commit('setJwtAccess', response.data.user.jwtAccess);
-                        this.$store.commit('setJwtRefresh', response.data.user.jwtRefresh);
+                        this.$store.commit('setRole', response.data.user.role);
+                        this.$store.commit('setJwtAccess', response.data.access_token);
+                        this.$store.commit('setJwtRefresh', response.data.refresh_token);
+                        console.log(response.data.access_token);
+                        console.log(typeof(response.data.access_token));
                         this.logSucc = true;
                     })
                     .catch(error => {

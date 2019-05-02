@@ -1,7 +1,7 @@
 <template>
     <v-container app class="footer" fluid pa-0>
-        <v-layout align-start row fill-height>
-            <v-flex xs4>
+        <v-layout align-start row fill-height wrap>
+            <v-flex xs12 md4>
                 <v-container fluid>
                     <v-layout column fill-height>
                         <v-flex text-xs-center xs1>
@@ -16,7 +16,7 @@
                     </v-layout>
                 </v-container>
             </v-flex>
-            <v-flex xs4>
+            <v-flex xs12 md4>
                 <v-container fluid>
                     <v-layout column fill-height>
                         <v-flex text-xs-center xs1>
@@ -32,7 +32,7 @@
                     </v-layout>
                 </v-container>
             </v-flex>
-            <v-flex xs4>
+            <v-flex xs12 md4>
                 <v-container fluid>
                     <v-layout column fill-height>
                         <v-flex text-xs-center xs1>
@@ -48,13 +48,32 @@
                     </v-layout>
                 </v-container>
             </v-flex>
+            <v-flex xs12 hidden v-if="showAdmin">
+                <v-container fluid>
+                    <v-layout fill-height column>
+                        <v-flex text-xs-center> 
+                            <h3>Admin</h3>
+                        </v-flex>
+                        <v-flex text-xs-center>
+                            <a>Manage Feedback</a>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-flex>
         </v-layout>
     </v-container>
 </template>
 
 <script>
 export default {
-    name: 'Footer'
+    name: 'Footer',
+    computed: {
+        showAdmin() {
+            // Only show the admin panel if user is logged in as admin
+            return this.$store.getters.role === 0;
+        }
+
+    }
 };
 </script>
 
