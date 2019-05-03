@@ -1,51 +1,24 @@
 <template>
-    <!-- <v-container fluid fill-height class="under-const">
-        <v-layout class="under-const-filter" justify-center column pa-5>
-            <v-flex>
-                <div>
-                    <div
-                        class="hidden-sm-and-down display-4 font-weight-black white--text text-xs-center mb-3"
-                    >
-                        Manage Feedback
-                    </div>
-                    <div
-                        class="hidden-md-and-up display-3 font-weight-black white--text text-xs-center mb-3"
-                    >
-                        Manage Feedback
-                    </div>
-                </div>
-                <div class="display-3 white--text text-xs-center">
-                    Test Vue for ManageFeedback
-                </div>
-            </v-flex>
-        </v-layout>
-    </v-container> -->
-    <!-- <ul>
-        <li v-for="(fb, index) in unresFeedback">
-            {{ fb.email }}
-        </li>
-    </ul> -->
     <v-container>
         <v-layout justify-center align-center="" column>
             <v-flex>
-                Unresolved Feedback
+            <v-container>
+                <v-layout row align-center justify-space-around="">
+                    <v-flex xs6>
+                        <h1>Feedback</h1>
+                    </v-flex>
+                    <v-flex xs6 text-xs-center>
+                        <v-select single-line outline :items="selItms">
+                        </v-select>
+                    </v-flex>
+                </v-layout>
+            </v-container>
             </v-flex>
             <v-flex ma-2 v-for="(fb, index) in unresFeedback">
-                <v-card width="800px">
-                    <v-card-title>
-                        <v-layout column>
-                            <v-flex><b>Name:</b> {{ fb.name }}</v-flex>
-                            <v-flex><b>Email:</b> {{ fb.email }}</v-flex>
-                            <v-flex><b>Recieved:</b> {{fb.rcvd_on}}</v-flex>
-                        </v-layout>
-                    </v-card-title>
-                    <v-card-text>
-                        {{ fb.text }}
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn small color="primary" outline="" @click="submit" text-xs-center>Mark Resolved</v-btn>
-                    </v-card-actions>
-                </v-card>
+                <feedback-card :feedback="fb"></feedback-card>
+            </v-flex>
+            <v-flex>
+                <v-btn color="primary" @click="loadMore" text-xs-center>More</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
@@ -55,13 +28,20 @@
 import axios from 'axios';
 import store from '../store';
 import router from '../router';
+import FeedbackCard from '@/components/FeedbackCard'
 
 export default {
     name: 'ManageFeedback',
+    components: {
+        FeedbackCard
+    },
     data() {
         return {
+            resPage: 1,
+            unresPage: 2,
             unresFeedback: [], // list of unresovled feedback object
-            resFeedback: []    // list of resolved feedback objects
+            resFeedback: [],    // list of resolved feedback objects
+            selItms: ["Unresolved", "Resolved"] // items for selection box
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -90,20 +70,30 @@ export default {
             console.log(error.response.data);
             router.push({path: '/unauthorized'}); // push user to unauthorized route
         });
+    },
+    methods: {
+        loadMore() {
+        const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
+        let header = {
+            headers: {
+                "Authorization": "Bearer " + store.getters.jwtAccess
+            }
+        };
+        axios.post(FEEDBACK_URL,
+        {
+            resolved: false,
+            page: this.unresPage
+        },
+        header)
+        .then(response => {
+            this.unresFeedback = this.unresFeedback.concat(response.data.feedbacks);
+            this.unresPage++;
+        })
+        }
     }
 };
 </script>
 
 <style scoped>
-.under-const {
-    background: url('../assets/landing_coffee_2.jpg');
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    background-position: center;
-}
-.under-const-filter {
-    background: rgba(62, 39, 35, 0.3);
-}
+
 </style>
