@@ -55,7 +55,7 @@
                             <h3>Admin</h3>
                         </v-flex>
                         <v-flex text-xs-center>
-                            <a>Manage Feedback</a>
+                            <router-link to="/managefeedback">Manage Feedback</router-link>
                         </v-flex>
                     </v-layout>
                 </v-container>
