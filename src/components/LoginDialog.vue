@@ -98,7 +98,7 @@ export default {
                 axios
                     .post(LOGIN_URL, {
                         email: this.form['email'],
-                        password: this.form['password']
+                        plaintext_password: this.form['password']
                     })
                     .then(response => {
                         this.$store.commit('setFirstName', response.data.user.first_name);

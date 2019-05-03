@@ -138,11 +138,11 @@ export default {
             } else {
                 const REGISTER_URL = process.env.VUE_APP_API_BASE_URL + '/registration';
                 axios
-                    .post(REGISTER_URL, {
+                    .put(REGISTER_URL, {
                         first_name: this.form['firstName'],
                         last_name: this.form['lastName'],
                         email: this.form['email'],
-                        password: this.form['password']
+                        plaintext_password: this.form['password']
                     })
                     .then(response => {
                         this.regSucc = true;
