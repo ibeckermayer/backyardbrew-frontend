@@ -3,6 +3,9 @@
         <v-layout justify-center>
             <v-flex md8>
                 <v-card flat>
+                    <v-alert class="w-100 pa-0 ma-0" :value="fbSucc" type="success">
+                    Thanks for your feedback. A customer support representative will respond as soon as possible.
+                    </v-alert>
                     <v-card-title>
                         <span class="headline">Feedback</span>
                         <v-spacer></v-spacer>
@@ -36,6 +39,7 @@
                                 </v-flex>
                                 <v-flex xs12>
                                     <v-textarea
+                                        validate-on-blur
                                         ref="feedback"
                                         label="Feedback"
                                         :rules="[rules.reqd]"
@@ -62,6 +66,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'Feedback',
     data() {
@@ -77,10 +83,16 @@ export default {
                 name: null,
                 email: null,
                 feedback: null
-            }
+            },
+            fbSucc: false
         };
     },
     methods: {
+        clear() {
+            this.form.name = null;
+            this.form.email = null;
+            this.form.feedback = null;
+        },
         submit() {
             this.hasErrors = false;
 
@@ -92,7 +104,20 @@ export default {
             if (this.hasErrors) {
                 console.log('Form has errors!');
             } else {
-                console.log('Form Completed!');
+                const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
+                axios.put(FEEDBACK_URL, {
+                    name: this.form['name'],
+                    email: this.form['email'],
+                    text: this.form['feedback']
+                })
+                .then(response => {
+                    this.fbSucc = true;
+                    this.clear();
+                    console.log('Feedback submitted successfully');
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             }
         }
     }
