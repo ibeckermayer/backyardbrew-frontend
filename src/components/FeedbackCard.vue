@@ -11,7 +11,8 @@
         {{ feedback.text }}
     </v-card-text>
     <v-card-actions>
-        <v-btn small color="primary" outline @click="toggleResolved(feedback)" text-xs-center>Mark Resolved</v-btn>
+        <v-btn v-if="!feedback.resolved" small color="primary" outline @click="toggleResolved(feedback)" text-xs-center>Mark Resolved</v-btn>
+        <v-btn v-if="feedback.resolved" small color="primary" outline @click="toggleResolved(feedback)" text-xs-center>Mark Unresolved</v-btn>
     </v-card-actions>
 </v-card>
     

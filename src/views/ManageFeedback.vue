@@ -8,7 +8,7 @@
                         <h1>Feedback</h1>
                     </v-flex>
                     <v-flex xs6 text-xs-center>
-                        <v-select single-line outline :items="selItms">
+                        <v-select v-model="resolved" single-line outline :items="selItms">
                         </v-select>
                     </v-flex>
                 </v-layout>
@@ -18,8 +18,8 @@
                 <feedback-card @toggle-resolved="toggleResolved" :feedback="fb"></feedback-card>
             </v-flex>
             <v-flex>
-                <v-btn color="primary" outline @click="prevPage">Previous</v-btn>
-                <v-btn color="primary" @click="nextPage" text-xs-center>Next</v-btn>
+                <v-btn color="primary" :disabled="currentPage == minPage" outline @click="prevPage">Previous</v-btn>
+                <v-btn color="primary" :disabled="currentPage == maxPage" @click="nextPage" text-xs-center>Next</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
@@ -43,7 +43,16 @@ export default {
             maxPage: null, // initialized in beforeRouteEnter
             resolved: false, // start with unresolved feedbacks
             feedbacks: [], // initialized in beforeRouteEnter
-            selItms: ["Unresolved", "Resolved"] // items for selection box
+            selItms: [
+                {
+                    text: "Unresolved",
+                    value: false
+                },
+                {
+                    text: "Resolved",
+                    value: true
+                }
+            ]
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -53,7 +62,6 @@ export default {
                 "Authorization": "Bearer " + store.getters.jwtAccess
             }
         };
-        console.log(header);
         axios.post(FEEDBACK_URL, // before entering route, get page 1 of unresolved feedbacks
         {
             resolved: false, // initially load unresolved
@@ -61,11 +69,9 @@ export default {
         },
         header)
         .then(response => { // if authorization succeeds
-            console.log(response);
             next(vm => {
                 vm.feedbacks = response.data.feedbacks; // fill feedbacks list with first page
                 vm.maxPage = response.data.total_pages;
-                console.log(vm.feedbacks);
             });
         })
         .catch(error => { // if authorization fails
@@ -77,56 +83,15 @@ export default {
     methods: {
         nextPage() {
             if (this.currentPage < this.maxPage) { // if there are more feedbacks to fetch
-                const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
-                let header = {
-                    headers: {
-                        "Authorization": "Bearer " + store.getters.jwtAccess
-                    }
-                };
-                axios.post(FEEDBACK_URL,
-                {
-                    resolved: this.resolved,
-                    page: ++this.currentPage // increment current page
-                },
-                header)
-                .then(response => { // on successful request
-                    this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
-                    this.maxPage = response.data.total_pages; // update total pages
-                })
-                .catch(error => {
-                    console.log(error.response.status);
-                    console.log(error.response.data);
-                    router.push({path: '/unauthorized'}); // push user to unauthorized route
-                })
+                this.displayPage(++this.currentPage);
             }
         },
         prevPage() {
             if (this.currentPage > this.minPage) { // if we are not on the first page
-                const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
-                let header = {
-                    headers: {
-                        "Authorization": "Bearer " + store.getters.jwtAccess
-                    }
-                };
-                axios.post(FEEDBACK_URL,
-                {
-                    resolved: this.resolved,
-                    page: --this.currentPage // decrement current page
-                },
-                header)
-                .then(response => { // on successful request
-                    this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
-                    this.maxPage = response.data.total_pages; // update total pages
-                })
-                .catch(error => {
-                    console.log(error.response.status);
-                    console.log(error.response.data);
-                    router.push({path: '/unauthorized'}); // push user to unauthorized route
-                })
+                this.displayPage(--this.currentPage);
             }
         },
         toggleResolved(feedback) {
-            console.log("toggleResolved called");
             const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
             let header = {
                 headers: {
@@ -139,8 +104,12 @@ export default {
                 id: fb_id,
                 resolved: newResVal
             }, header)
-            .then(response => { // patch confirmed, remove feedback from respective list
-                this.removeFeedback(feedback.id, feedback.resolved);
+            .then(response => { // patch confirmed
+                this.maxPage = response.data.total_pages; // update max pages
+                if (this.currentPage > this.maxPage) {
+                    this.currentPage = this.maxPage // if change of object state causes logical inconsistency, account for it
+                }
+                this.displayPage(this.currentPage);
             })
             .catch(error => {
                 console.log(error.response.status);
@@ -148,12 +117,35 @@ export default {
                 router.push({path: '/unauthorized'}); // push user to unauthorized route
             })
         },
-        removeFeedback (id, resolved) {
-            if (resolved == false) {
-                this.unresFeedback = this.unresFeedback.filter(fb => {
-                    return fb.id != id;
-                })
-            }
+        displayPage(page) {
+            const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
+            let header = {
+                headers: {
+                    "Authorization": "Bearer " + store.getters.jwtAccess
+                }
+            };
+            axios.post(FEEDBACK_URL,
+            {
+                resolved: this.resolved,
+                page: page
+            },
+            header)
+            .then(response => { // on successful request
+                this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
+                this.maxPage = response.data.total_pages; // update total pages
+            })
+            .catch(error => {
+                console.log(error.response.status);
+                console.log(error.response.data);
+                router.push({path: '/unauthorized'}); // push user to unauthorized route
+            })
+        }
+    },
+    watch: {
+        // called when selection dropdown is changed
+        resolved: function (oldVal, newVal) {
+            this.currentPage = 1; // set the current page to page 1
+            this.displayPage(this.currentPage); // load new results, update max pages, etc.
         }
     }
 };
