@@ -51,7 +51,7 @@
             <v-flex xs12 hidden v-if="showAdmin">
                 <v-container fluid>
                     <v-layout fill-height column>
-                        <v-flex text-xs-center> 
+                        <v-flex text-xs-center>
                             <h3>Admin</h3>
                         </v-flex>
                         <v-flex text-xs-center>
@@ -72,7 +72,6 @@ export default {
             // Only show the admin panel if user is logged in as admin
             return this.$store.getters.role === 0;
         }
-
     }
 };
 </script>

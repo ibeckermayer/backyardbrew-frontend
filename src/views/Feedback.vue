@@ -4,7 +4,8 @@
             <v-flex md8>
                 <v-card flat>
                     <v-alert class="w-100 pa-0 ma-0" :value="fbSucc" type="success">
-                    Thanks for your feedback. A customer support representative will respond as soon as possible.
+                        Thanks for your feedback. A customer support representative will respond as
+                        soon as possible.
                     </v-alert>
                     <v-card-title>
                         <span class="headline">Feedback</span>
@@ -105,19 +106,20 @@ export default {
                 console.log('Form has errors!');
             } else {
                 const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
-                axios.put(FEEDBACK_URL, {
-                    name: this.form['name'],
-                    email: this.form['email'],
-                    text: this.form['feedback']
-                })
-                .then(response => {
-                    this.fbSucc = true;
-                    this.clear();
-                    console.log('Feedback submitted successfully');
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+                axios
+                    .put(FEEDBACK_URL, {
+                        name: this.form['name'],
+                        email: this.form['email'],
+                        text: this.form['feedback']
+                    })
+                    .then(response => {
+                        this.fbSucc = true;
+                        this.clear();
+                        console.log('Feedback submitted successfully');
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             }
         }
     }
