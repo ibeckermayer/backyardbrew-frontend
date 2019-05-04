@@ -11,7 +11,7 @@
         {{ feedback.text }}
     </v-card-text>
     <v-card-actions>
-        <v-btn small color="primary" outline @click="submit" text-xs-center>Mark Resolved</v-btn>
+        <v-btn small color="primary" outline @click="toggleResolved(feedback)" text-xs-center>Mark Resolved</v-btn>
     </v-card-actions>
 </v-card>
     
@@ -20,7 +20,13 @@
 <script>
 export default {
     name: 'FeedbackCard',
-    props: ['feedback']
+    props: ['feedback'],
+    methods: {
+        toggleResolved(feedback){
+            console.log('toggle-resolved emitted');
+            this.$emit('toggle-resolved', feedback);
+        }
+    }
 }
 </script>
 
