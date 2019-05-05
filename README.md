@@ -12,7 +12,7 @@ npx vue-cli-service serve
 
 ### Compiles and minifies for production
 ```
-npm run build
+npx vue-cli-service build
 ```
 
 ### Run your tests
