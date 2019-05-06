@@ -50,6 +50,11 @@ export default new Router({
             path: '/managefeedback',
             name: 'managefeedback',
             component: () => import('./views/ManageFeedback.vue')
+        },
+        {
+            path: '/catalog',
+            name: 'catalog',
+            component: () => import('./views/Catalog.vue')
         }
     ]
 });
