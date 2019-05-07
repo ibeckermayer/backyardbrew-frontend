@@ -106,7 +106,7 @@
                                 <v-btn
                                     color="#8D6E63"
                                     dark
-                                    href="https://aoccoffee.com/collections/all"
+                                    to="/catalog"
                                     v-ripple="{ class: `brown--text` }"
                                     >Order</v-btn
                                 >
