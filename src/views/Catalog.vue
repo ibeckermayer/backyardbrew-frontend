@@ -14,18 +14,29 @@
                     </v-layout>
                 </v-container>
             </v-flex>
+            <v-container grid-list-md>  
+                <v-layout row wrap justify-center align-center="">
+                    <v-flex md4 ma-2 v-for="(catalogItem, index) in catalogItems">
+                        <catalog-item-card :catalog-item="catalogItem"></catalog-item-card>
+                    </v-flex>
+                </v-layout>
+            </v-container>
         </v-layout>
     </v-container>
 </template>
 
 <script>
 import axios from 'axios';
+import CatalogItemCard from '@/components/CatalogItemCard';
 
 export default {
     name: "Catalog",
+    components: {
+        CatalogItemCard
+    },
     data() {
         return {
-            items: [], // list to hold catalog of items
+            catalogItems: [], // list to hold catalog of items
             showFilter: 0, // Initialize to showing all items; corresponds to filters object below
             filters: [ // Item filters for dropdown
                 {
@@ -44,15 +55,12 @@ export default {
         }
     },
     beforeRouteEnter(to, from, next) {
-        const CATALOG_URL = process.env.VUE_APP_API_BASE_URL + '/squaresearchcatalogobjects';
-        axios.post(CATALOG_URL, {
-            body: {
-                object_types: ["ITEM"]
-            }
-        })
+        const CATALOG_URL = process.env.VUE_APP_API_BASE_URL + '/fullcatalog';
+        axios.get(CATALOG_URL)
         .then(response => {
             next(vm => {
-                vm.items = response.data.objects;
+                vm.catalogItems = response.data.items;
+                console.log(vm.catalogItems);
             })
         })
         .catch(error => {
