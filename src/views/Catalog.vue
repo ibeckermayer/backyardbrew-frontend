@@ -37,19 +37,19 @@ export default {
     data() {
         return {
             catalogItems: [], // list to hold catalog of items
-            showFilter: 0, // Initialize to showing all items; corresponds to filters object below
+            showFilter: 'All', // Initialize to showing all items; corresponds to filters object below
             filters: [ // Item filters for dropdown
                 {
                     text: 'All',
-                    value: 0
+                    value: 'All'
                 },
                 {
                     text: 'Coffee',
-                    value: 1
+                    value: 'Coffee'
                 },
                 {
                     text: 'Black Tea',
-                    value: 2
+                    value: 'Black Tea'
                 }
             ]
         }
@@ -60,7 +60,6 @@ export default {
         .then(response => {
             next(vm => {
                 vm.catalogItems = response.data.items;
-                console.log(vm.catalogItems);
             })
         })
         .catch(error => {
