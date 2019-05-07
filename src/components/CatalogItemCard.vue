@@ -14,13 +14,13 @@
         <v-card-actions>
             <v-container>
                 <v-layout justify-space-around align-center>
-                    <v-flex md3>
+                    <v-flex md4>
                         <v-select label="Size" regular v-model="selectedVariation" :items="variations"></v-select>
                     </v-flex>
-                    <v-flex md3>
+                    <v-flex md4>
                         <v-select label="Quantity" regular v-model="selectedQty" :items="qtys"></v-select>
                     </v-flex>
-                    <v-flex md3>
+                    <v-flex md4>
                         <v-text-field label="Price" regular readonly :value="priceAsString">
                         </v-text-field>
                     </v-flex>
@@ -61,7 +61,6 @@ export default {
                 };
                 this.qtys = this.qtys.concat(new_qty);
             }
-            console.log(this.qtys); 
             this.selectedQty = this.qtys[0].value;
         }
     },
