@@ -16,7 +16,7 @@
             </v-flex>
             <v-container grid-list-md>  
                 <v-layout row wrap justify-center align-center="">
-                    <v-flex xs12 sm4 md4 lg3 ma-2 v-for="(catalogItem, index) in catalogItems">
+                    <v-flex xs12 sm6 md4 v-for="(catalogItem, index) in catalogItems">
                         <catalog-item-card :catalog-item="catalogItem"></catalog-item-card>
                     </v-flex>
                 </v-layout>
