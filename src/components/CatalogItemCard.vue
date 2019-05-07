@@ -15,13 +15,13 @@
             <v-container>
                 <v-layout justify-space-around align-center>
                     <v-flex md3>
-                        <v-select single-line solo v-model="selectedVariation" :items="variations"></v-select>
+                        <v-select label="Size" regular v-model="selectedVariation" :items="variations"></v-select>
                     </v-flex>
                     <v-flex md3>
-                        <v-select single-line solo v-model="selectedQty" :items="qtys"></v-select>
+                        <v-select label="Quantity" regular v-model="selectedQty" :items="qtys"></v-select>
                     </v-flex>
-                    <v-flex md3 font-weight-bold title>
-                        <v-text-field solo signle-line readonly :value="priceAsString">
+                    <v-flex md3>
+                        <v-text-field label="Price" regular readonly :value="priceAsString">
                         </v-text-field>
                     </v-flex>
                 </v-layout>
