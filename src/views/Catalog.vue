@@ -3,20 +3,20 @@
         <v-layout justify-center column>
             <v-flex>
                 <v-container>
-                    <v-layout row wrap align-center justify-center="">
+                    <v-layout row wrap align-center justify-center>
                         <v-flex xs12 md2 text-xs-center>
                             <h1>Catalog</h1>
                         </v-flex>
                         <v-flex xs12 md2 text-xs-center>
-                            <v-select v-model="showFilter" single-line outline :items="filters">
+                            <v-select v-model="currentFilter" single-line outline :items="filters">
                             </v-select>
                         </v-flex>
                     </v-layout>
                 </v-container>
             </v-flex>
             <v-container grid-list-md>  
-                <v-layout row wrap justify-center align-center="">
-                    <v-flex xs12 sm6 md4 v-for="(catalogItem, index) in catalogItems">
+                <v-layout row wrap justify-start align-center>
+                    <v-flex xs12 sm6 md4 v-for="(catalogItem, index) in filteredCatalogItems">
                         <catalog-item-card :catalog-item="catalogItem"></catalog-item-card>
                     </v-flex>
                 </v-layout>
@@ -36,8 +36,9 @@ export default {
     },
     data() {
         return {
-            catalogItems: [], // list to hold catalog of items
-            showFilter: 'All', // Initialize to showing all items; corresponds to filters object below
+            allCatalogItems: [], // list to hold entire catalog of items
+            filteredCatalogItems: [], // list to hold catalog items for the currentFilter
+            currentFilter: 'All', // Initialize to showing all items; corresponds to filters object below
             filters: [ // Item filters for dropdown
                 {
                     text: 'All',
@@ -51,9 +52,12 @@ export default {
         axios.get(CATALOG_URL)
         .then(response => {
             next(vm => {
-                vm.catalogItems = response.data.items;
+                vm.allCatalogItems = response.data.items.slice(0);
+                vm.filteredCatalogItems = response.data.items.slice(0); // initialize to allCatalogItems
+                console.log(vm.allCatalogItems);
+                console.log(vm.filteredCatalogItems);
+                console.log(vm.allCatalogItems === vm.filteredCatalogItems)
                 response.data.categories.forEach(category => {
-                    console.log(category)
                     let new_filter = {
                         text: category.name,
                         value: category.name
@@ -66,6 +70,15 @@ export default {
             console.log(error.response.status);
             console.log(error.response.data);
         });
+    },
+    watch: {
+        currentFilter: function(newVal, oldVal) {
+            if (newVal === 'All') {
+                this.filteredCatalogItems = this.allCatalogItems.slice(0);
+            } else {
+                this.filteredCatalogItems = this.allCatalogItems.filter(item => item.category_data.name === newVal);
+            }
+        }
     }
 }
 </script>
