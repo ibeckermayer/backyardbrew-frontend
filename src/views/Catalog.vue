@@ -42,14 +42,6 @@ export default {
                 {
                     text: 'All',
                     value: 'All'
-                },
-                {
-                    text: 'Coffee',
-                    value: 'Coffee'
-                },
-                {
-                    text: 'Black Tea',
-                    value: 'Black Tea'
                 }
             ]
         }
@@ -60,6 +52,14 @@ export default {
         .then(response => {
             next(vm => {
                 vm.catalogItems = response.data.items;
+                response.data.categories.forEach(category => {
+                    console.log(category)
+                    let new_filter = {
+                        text: category.name,
+                        value: category.name
+                    }
+                    vm.filters = vm.filters.concat(new_filter);
+                })
             })
         })
         .catch(error => {
