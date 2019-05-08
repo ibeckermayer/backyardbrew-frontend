@@ -169,7 +169,7 @@ export default {
     },
     watch: {
         // called when selection dropdown is changed
-        resolved: function(oldVal, newVal) {
+        resolved: function(newVal, oldVal) {
             this.currentPage = 1; // set the current page to page 1
             this.displayPage(this.currentPage); // load new results, update max pages, etc.
         }
