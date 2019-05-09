@@ -50,7 +50,7 @@
                 <v-container>
                     <v-layout justify-center align-center>
                         <v-btn color="primary" dark @click="submit" text-md-center>Login</v-btn>
-                        <v-btn color="secondary" @click="close" text-md-center>Close</v-btn>
+                        <v-btn color="primary" outline @click="close" text-md-center>Close</v-btn>
                     </v-layout>
                 </v-container>
             </v-card-actions>
