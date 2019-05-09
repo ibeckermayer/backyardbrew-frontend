@@ -1,33 +1,45 @@
 <template>
-    <v-card>
-        <v-card-title>
-            <v-flex text-xs-center class="headline">{{ catalogItem.name }}</v-flex>
-        </v-card-title>
-        <v-card-text>
+    <v-hover>
+        <v-card slot-scope="{ hover }" class="mx-auto">
             <v-img
-            :src="catalogItem.image_url"
-            height="200px"
-            contain
-            >
-            </v-img>
-        </v-card-text>
-        <v-card-actions>
-            <v-container>
-                <v-layout justify-space-around align-center>
-                    <v-flex md4>
-                        <v-select label="Size" regular v-model="selectedVariation" :items="variations"></v-select>
-                    </v-flex>
-                    <v-flex md4>
-                        <v-select label="Quantity" regular v-model="selectedQty" :items="qtys"></v-select>
-                    </v-flex>
-                    <v-flex md4>
-                        <v-text-field label="Price" regular readonly :value="priceAsString">
-                        </v-text-field>
-                    </v-flex>
-                </v-layout>
-            </v-container>
-        </v-card-actions>
-    </v-card>
+                :src="catalogItem.image_url"
+                height="300px"
+                contain
+                >
+                <v-expand-transition>
+                    <div
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out primary darken-5 v-card--reveal subheading white--text"
+                    style="height: 100%;"
+                    ma-1
+                    >
+                    <div class="text-xs-center cat-desc" pa-5>
+                        {{ catalogItem.description }}
+                    </div>
+                    </div>
+            </v-expand-transition>
+                </v-img>
+            <v-card-title>
+                <v-flex text-xs-center class="headline">{{ catalogItem.name }}</v-flex>
+            </v-card-title>
+            <v-card-actions>
+                <v-container>
+                    <v-layout justify-space-around align-center>
+                        <v-flex md4>
+                            <v-select label="Size" regular v-model="selectedVariation" :items="variations"></v-select>
+                        </v-flex>
+                        <v-flex md4>
+                            <v-select label="Quantity" regular v-model="selectedQty" :items="qtys"></v-select>
+                        </v-flex>
+                        <v-flex md4>
+                            <v-text-field label="Price" regular readonly :value="priceAsString">
+                            </v-text-field>
+                        </v-flex>
+                    </v-layout>
+                </v-container>
+            </v-card-actions>
+        </v-card>
+    </v-hover>
 </template>
 
 <script>
@@ -76,4 +88,17 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: .95;
+  position: absolute;
+  width: 100%;
+}
+
+.cat-desc {
+    margin: 2em;
+}
+</style>

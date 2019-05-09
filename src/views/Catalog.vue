@@ -54,9 +54,6 @@ export default {
             next(vm => {
                 vm.allCatalogItems = response.data.items.slice(0);
                 vm.filteredCatalogItems = response.data.items.slice(0); // initialize to allCatalogItems
-                console.log(vm.allCatalogItems);
-                console.log(vm.filteredCatalogItems);
-                console.log(vm.allCatalogItems === vm.filteredCatalogItems)
                 response.data.categories.forEach(category => {
                     let new_filter = {
                         text: category.name,
