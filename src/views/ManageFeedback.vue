@@ -67,7 +67,7 @@ export default {
         const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
         let header = {
             headers: {
-                Authorization: 'Bearer ' + store.getters.jwtAccess
+                Authorization: 'Bearer ' + store.getters.user.jwtAccess
             }
         };
         axios
@@ -110,7 +110,7 @@ export default {
             const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
             let header = {
                 headers: {
-                    Authorization: 'Bearer ' + store.getters.jwtAccess
+                    Authorization: 'Bearer ' + store.getters.user.jwtAccess
                 }
             };
             let newResVal = !feedback.resolved; // new resolved value is negation of current value
@@ -143,7 +143,7 @@ export default {
             const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
             let header = {
                 headers: {
-                    Authorization: 'Bearer ' + store.getters.jwtAccess
+                    Authorization: 'Bearer ' + store.getters.user.jwtAccess
                 }
             };
             axios

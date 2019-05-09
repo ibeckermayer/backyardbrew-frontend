@@ -14,6 +14,9 @@ export default new Vuex.Store({
             jwtRefresh: ''
         }
     },
+    getters: {
+        user: state => state.user
+    },
     mutations: {
         setFirstName(state, firstName) {
             state.user.firstName = firstName;
@@ -43,12 +46,5 @@ export default new Vuex.Store({
         }
     },
     actions: {},
-    getters: {
-        firstName: state => state.user.firstName,
-        lastName: state => state.user.lastName,
-        email: state => state.user.email,
-        role: state => state.user.role,
-        jwtAccess: state => state.user.jwtAccess,
-        jwtRefresh: state => state.user.jwtRefresh
-    }
+    
 });

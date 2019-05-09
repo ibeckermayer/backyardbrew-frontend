@@ -70,7 +70,7 @@ export default {
     computed: {
         showAdmin() {
             // Only show the admin panel if user is logged in as admin
-            return this.$store.getters.role === 0;
+            return this.$store.getters.user.role === 0;
         }
     }
 };
