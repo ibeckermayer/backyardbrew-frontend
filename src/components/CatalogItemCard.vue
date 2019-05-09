@@ -1,30 +1,34 @@
 <template>
-    <v-hover>
-        <v-card slot-scope="{ hover }" class="mx-auto">
-            <v-img
+        <v-card  class="mx-auto">
+            <v-hover>
+                <v-img
                 :src="catalogItem.image_url"
                 height="300px"
                 contain
+                slot-scope="{ hover }"
                 >
-                <v-expand-transition>
-                    <div
-                    v-if="hover"
-                    class="d-flex transition-fast-in-fast-out primary darken-5 v-card--reveal subheading white--text"
-                    style="height: 100%;"
-                    ma-1
-                    >
-                    <div class="text-xs-center cat-desc" pa-5>
-                        {{ catalogItem.description }}
-                    </div>
-                    </div>
-            </v-expand-transition>
+                    <v-expand-transition>
+                        <div
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out darken-5 v-card--reveal headline white--text"
+                        style="height: 100%;"
+                        
+                        >
+                            <div class="text-xs-center cat-desc">
+                                {{ catalogItem.description }}
+                            </div>
+                        </div>
+                    </v-expand-transition>
                 </v-img>
+            </v-hover>
             <v-card-title>
-                <v-flex text-xs-center class="headline">{{ catalogItem.name }}</v-flex>
+                <v-flex text-xs-center class="headline">
+                    {{ catalogItem.name }}
+                </v-flex>
             </v-card-title>
-            <v-card-actions>
+            <v-card-text>
                 <v-container>
-                    <v-layout justify-space-around align-center>
+                    <v-layout justify-space-around align-center row wrap>
                         <v-flex md4>
                             <v-select label="Size" regular v-model="selectedVariation" :items="variations"></v-select>
                         </v-flex>
@@ -37,9 +41,22 @@
                         </v-flex>
                     </v-layout>
                 </v-container>
+            </v-card-text>
+            <v-card-actions class="add-to-cart">
+                <v-container>
+                    <v-layout row justify-center align-center>
+                        <v-btn
+                        color="primary"
+                        class="white--text"
+                        large
+                        >
+                        <v-icon left dark>shopping_cart</v-icon>
+                        Add To Cart
+                        </v-btn>
+                    </v-layout>
+                </v-container>
             </v-card-actions>
         </v-card>
-    </v-hover>
 </template>
 
 <script>
@@ -93,9 +110,9 @@ export default {
   align-items: center;
   bottom: 0;
   justify-content: center;
-  opacity: .95;
   position: absolute;
   width: 100%;
+  background: rgba(141, 110, 99, 0.8);
 }
 
 .cat-desc {
