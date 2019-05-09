@@ -6,43 +6,28 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         user: {
-            firstName: '',
-            lastName: '',
+            first_name: '',
+            last_name: '',
             email: '',
             role: '',
-            jwtAccess: '',
-            jwtRefresh: ''
+            access_token: '',
+            refresh_token: ''
         }
     },
     getters: {
         user: state => state.user
     },
     mutations: {
-        setFirstName(state, firstName) {
-            state.user.firstName = firstName;
-        },
-        setLastName(state, lastName) {
-            state.user.lastName = lastName;
-        },
-        setEmail(state, email) {
-            state.user.email = email;
-        },
-        setJwtAccess(state, jwtAccess) {
-            state.user.jwtAccess = jwtAccess;
-        },
-        setJwtRefresh(state, jwtRefresh) {
-            state.user.jwtRefresh = jwtRefresh;
-        },
-        setRole(state, role) {
-            state.user.role = role;
+        setUser(state, user) {
+            state.user = user;
         },
         resetUser(state) {
-            state.user.firstName = '';
-            state.user.lastName = '';
+            state.user.first_name = '';
+            state.user.last_name = '';
             state.user.email = '';
             state.user.role = '';
-            state.user.jwtAccess = '';
-            state.user.jwtRefresh = '';
+            state.user.access_token = '';
+            state.user.refresh_token = '';
         }
     },
     actions: {},

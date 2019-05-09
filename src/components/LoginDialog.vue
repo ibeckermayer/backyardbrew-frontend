@@ -101,13 +101,8 @@ export default {
                         plaintext_password: this.form['password']
                     })
                     .then(response => {
-                        this.$store.commit('setFirstName', response.data.user.first_name);
-                        this.$store.commit('setLastName', response.data.user.last_name);
-                        this.$store.commit('setEmail', response.data.user.email);
-                        this.$store.commit('setRole', response.data.user.role);
-                        this.$store.commit('setJwtAccess', response.data.access_token);
-                        this.$store.commit('setJwtRefresh', response.data.refresh_token);
-                        this.logSucc = true;
+                        this.$store.commit('setUser', response.data.user); // set user in store
+                        this.logSucc = true; // show the login successful alert
                     })
                     .catch(error => {
                         if (error.response.status == 404) {

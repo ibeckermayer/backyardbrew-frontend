@@ -23,7 +23,7 @@
                 >
                 <v-btn
                     color="primary"
-                    :disabled="currentPage == maxPage"
+                    :disabled="currentPage == total_pages"
                     @click="nextPage"
                     text-xs-center
                     >Next</v-btn
@@ -48,7 +48,7 @@ export default {
         return {
             currentPage: 1, // start on page 1
             minPage: 1, // constant, should not change
-            maxPage: null, // initialized in beforeRouteEnter
+            total_pages: null, // initialized in beforeRouteEnter
             resolved: false, // start with unresolved feedbacks
             feedbacks: [], // initialized in beforeRouteEnter
             selItms: [
@@ -67,7 +67,7 @@ export default {
         const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
         let header = {
             headers: {
-                Authorization: 'Bearer ' + store.getters.user.jwtAccess
+                Authorization: 'Bearer ' + store.getters.user.access_token
             }
         };
         axios
@@ -83,7 +83,7 @@ export default {
                 // if authorization succeeds
                 next(vm => {
                     vm.feedbacks = response.data.feedbacks; // fill feedbacks list with first page
-                    vm.maxPage = response.data.total_pages;
+                    vm.total_pages = response.data.total_pages;
                 });
             })
             .catch(error => {
@@ -95,7 +95,7 @@ export default {
     },
     methods: {
         nextPage() {
-            if (this.currentPage < this.maxPage) {
+            if (this.currentPage < this.total_pages) {
                 // if there are more feedbacks to fetch
                 this.displayPage(++this.currentPage);
             }
@@ -110,7 +110,7 @@ export default {
             const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
             let header = {
                 headers: {
-                    Authorization: 'Bearer ' + store.getters.user.jwtAccess
+                    Authorization: 'Bearer ' + store.getters.user.access_token
                 }
             };
             let newResVal = !feedback.resolved; // new resolved value is negation of current value
@@ -127,9 +127,9 @@ export default {
                 )
                 .then(response => {
                     // patch confirmed
-                    this.maxPage = response.data.total_pages; // update max pages
-                    if (this.currentPage > this.maxPage) {
-                        this.currentPage = this.maxPage; // if change of object state causes logical inconsistency, account for it
+                    this.total_pages = response.data.total_pages; // update max pages
+                    if (this.currentPage > this.total_pages) {
+                        this.currentPage = this.total_pages; // if change of object state causes logical inconsistency, account for it
                     }
                     this.displayPage(this.currentPage);
                 })
@@ -143,7 +143,7 @@ export default {
             const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
             let header = {
                 headers: {
-                    Authorization: 'Bearer ' + store.getters.user.jwtAccess
+                    Authorization: 'Bearer ' + store.getters.user.access_token
                 }
             };
             axios
@@ -158,7 +158,7 @@ export default {
                 .then(response => {
                     // on successful request
                     this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
-                    this.maxPage = response.data.total_pages; // update total pages
+                    this.total_pages = response.data.total_pages; // update total pages
                 })
                 .catch(error => {
                     console.log(error.response.status);
