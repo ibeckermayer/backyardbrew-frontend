@@ -6,7 +6,7 @@
         :fullscreen="$vuetify.breakpoint.smAndDown"
     >
         <v-card>
-            <v-alert class="w-100 pa-0 ma-0" :value="logSucc" type="success">
+            <v-alert class="w-100 pa-0 ma-0" :value="loggedIn" type="success">
                 Login successful!
             </v-alert>
             <v-card-title>
@@ -65,7 +65,6 @@ export default {
     props: ['show'],
     data() {
         return {
-            logSucc: false,
             emailDNE: [],
             pwdIncorrect: [],
             form: {
@@ -94,15 +93,17 @@ export default {
             if (this.hasErrors) {
                 console.log('Form has errors!');
             } else {
-                const LOGIN_URL = process.env.VUE_APP_API_BASE_URL + '/login';
-                axios
-                    .post(LOGIN_URL, {
+                this.login();
+            }
+        },
+        login() {
+            const LOGIN_URL = process.env.VUE_APP_API_BASE_URL + '/login';
+                axios.post(LOGIN_URL, {
                         email: this.form['email'],
                         plaintext_password: this.form['password']
                     })
                     .then(response => {
                         this.$store.commit('setUser', response.data.user); // set user in store
-                        this.logSucc = true; // show the login successful alert
                     })
                     .catch(error => {
                         if (error.response.status == 404) {
@@ -112,7 +113,6 @@ export default {
                             this.pwdIncorrect = 'Password incorrect';
                         }
                     });
-            }
         },
         clearForm() {
             this.form['email'] = null;
@@ -121,6 +121,12 @@ export default {
         close() {
             this.clearForm();
             this.$emit('loginClose');
+        }
+    },
+    computed: {
+        loggedIn () {
+            // true if user is logged in, false otherwise
+            return this.$store.getters.user.access_token; // true if access token is not empty string
         }
     }
 };
