@@ -1,5 +1,5 @@
-<template>
-    <span>
+<template >
+    <span class="sticky">
         <!-- Bar layout -->
         <v-container app class="account-bar" fluid pa-0>
             <v-layout align-center row fill-height>
@@ -70,5 +70,15 @@ a {
     text-decoration: none;
     color: white;
     font-weight: bold;
+}
+
+.sticky {
+  position:fixed; /* fixing the position takes it out of html flow - knows
+                   nothing about where to locate itself except by browser
+                   coordinates */
+  left:0;           /* top left corner should start at leftmost spot */
+  top:0;            /* top left corner should start at topmost spot */
+  width:100vw;      /* take up the full browser width */
+  z-index: 200;     /* high z-index so other content scrolls beneath */ 
 }
 </style>

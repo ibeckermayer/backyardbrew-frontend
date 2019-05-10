@@ -23,7 +23,7 @@
                 </v-list>
             </v-navigation-drawer>
         </v-container>
-        <v-container app hidden-sm-and-down class="nav-bar" fluid pa-0>
+        <v-container app hidden-sm-and-down class="nav-bar" fluid pt-3>
             <v-layout align-center row fill-height>
                 <v-flex md2>
                     <v-container align-center class="logo-container">
