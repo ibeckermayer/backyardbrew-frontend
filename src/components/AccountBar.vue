@@ -16,7 +16,7 @@
                                 <a @click.prevent="registerShow = true">Register</a>
                             </v-flex>
                             <v-flex text-md-center md1>
-                                <a>Cart</a>
+                                <a>Cart ({{ cartCount }})</a>
                             </v-flex>
                             <v-flex text-md-center md1>
                                 <a>Account</a>
@@ -51,6 +51,11 @@ export default {
             loginShow: false,
             registerShow: false
         };
+    },
+    computed: {
+        cartCount () {
+            return this.$store.getters.cart.items.length;
+        }
     }
 };
 </script>
