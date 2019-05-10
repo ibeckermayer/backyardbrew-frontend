@@ -5,21 +5,27 @@
             <v-layout align-center row fill-height>
                 <v-flex md12 elevation-1 class="account-bar-flex">
                     <v-container class="button-container" fluid>
-                        <v-layout justify-end row fill-height>
+                        <v-layout justify-end align-center row fill-height>
                             <v-flex text-md-center md1>
-                                <a href="#contact">Contact</a>
+                                <v-btn small flat class="account-button" href="#contact">Contact</v-btn>
                             </v-flex>
-                            <v-flex text-md-center md1>
-                                <a @click.prevent="loginShow = true">Login</a>
+                            <v-flex text-md-center md1 hidden v-if="!loggedIn">
+                                <v-btn small flat class="account-button" @click.prevent="loginShow = true">Login</v-btn>
                             </v-flex>
-                            <v-flex text-md-center md1>
-                                <a @click.prevent="registerShow = true">Register</a>
+                            <v-flex text-md-center md1 hidden v-if="!loggedIn">
+                                <v-btn small flat class="account-button" @click.prevent="registerShow = true">Register</v-btn>
                             </v-flex>
-                            <v-flex text-md-center md1>
-                                <a>Cart ({{ cartCount }})</a>
+                            <v-flex text-md-center md1 hidden v-if="loggedIn">
+                                <v-btn small flat class="account-button">Logout</v-btn>
                             </v-flex>
-                            <v-flex text-md-center md1>
-                                <a>Account</a>
+                            <v-flex text-md-center md1 hidden v-if="loggedIn">
+                                <v-btn small flat class="account-button">Account</v-btn>
+                            </v-flex>
+                            <v-flex md2>
+                                <v-btn small flat>
+                                    <v-icon dark color="white">shopping_cart</v-icon>
+                                    <span color="white" class="cart">({{ cartCount }})</span>
+                                </v-btn>
                             </v-flex>
                         </v-layout>
                     </v-container>
@@ -55,6 +61,10 @@ export default {
     computed: {
         cartCount () {
             return this.$store.getters.cart.items.length;
+        },
+        loggedIn () {
+            // true if user is logged in, false otherwise
+            return this.$store.getters.user.access_token; // true if access token is not empty string
         }
     }
 };
@@ -69,12 +79,13 @@ export default {
     background-color: #8d6e63;
 }
 
-a {
+.account-button {
     margin: 0;
     padding: 0;
     text-decoration: none;
     color: white;
     font-weight: bold;
+
 }
 
 .sticky {
@@ -85,5 +96,11 @@ a {
   top:0;            /* top left corner should start at topmost spot */
   width:100vw;      /* take up the full browser width */
   z-index: 200;     /* high z-index so other content scrolls beneath */ 
+}
+
+.cart {
+    /* font-weight: bold; */
+    font-size: 1.5em;
+    color: white;
 }
 </style>

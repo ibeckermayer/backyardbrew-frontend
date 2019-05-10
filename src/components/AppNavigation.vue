@@ -1,6 +1,6 @@
 <template>
     <span>
-        <account-bar></account-bar>
+        <account-bar class="hidden-sm-and-down"></account-bar>
         <v-container app hidden-md-and-up pa-0>
             <v-toolbar color="#FFFFFF" light="">
                 <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -23,7 +23,7 @@
                 </v-list>
             </v-navigation-drawer>
         </v-container>
-        <v-container app hidden-sm-and-down class="nav-bar" fluid pt-3>
+        <v-container app hidden-sm-and-down class="nav-bar" fluid pt-4 mt-3>
             <v-layout align-center row fill-height>
                 <v-flex md2>
                     <v-container align-center class="logo-container">

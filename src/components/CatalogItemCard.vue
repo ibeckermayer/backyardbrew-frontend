@@ -49,10 +49,15 @@
                         color="primary"
                         class="white--text"
                         large
-                        @click="addToCart"
+                        @click="loader = 'loading'; addToCart()"
+                        :loading="loading"
+                        :disabled="loading"
                         >
                         <v-icon left dark>shopping_cart</v-icon>
                         Add To Cart
+                        <template v-slot:loader>
+                            <span>Added</span>
+                        </template>
                         </v-btn>
                     </v-layout>
                 </v-container>
@@ -69,7 +74,10 @@ export default {
             selectedVariation: null, // the currently selected variation
             variations: [], // list of text,value objects for the v-select box
             selectedQty: null, // selected quantity value
-            qtys: [] // list of available quantities
+            qtys: [], // list of available quantities
+            loader: null, // data for handling button change on click
+            loading: false // ditto from loader, see example loaders at https://vuetifyjs.com/en/components/buttons
+
         }
     },
     methods: {
@@ -112,6 +120,14 @@ export default {
     created() {
         this.initVariations();
         this.initQtys();
+    },
+    watch: {
+        loader () {
+            const l = this.loader
+            this[l] = !this[l]
+            setTimeout(() => (this[l] = false), 2000)
+            this.loader = null
+        }
     }
 };
 </script>
