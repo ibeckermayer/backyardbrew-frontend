@@ -49,6 +49,7 @@
                         color="primary"
                         class="white--text"
                         large
+                        @click="addToCart"
                         >
                         <v-icon left dark>shopping_cart</v-icon>
                         Add To Cart
@@ -76,7 +77,10 @@ export default {
         this.catalogItem.variations.forEach(variation => {
             let new_variation = {
                 text: variation.item_variation_data.name,
-                value: variation.item_variation_data.price_money.amount / 100, // value is price. must be divided by 100 because the square api is weird. 
+                value: {
+                    item_id: variation.item_variation_data.item_id, // item_id, for storage in cart
+                    amount: variation.item_variation_data.price_money.amount // price, in cents
+                }
             };
             this.variations = this.variations.concat(new_variation);
         });
@@ -91,11 +95,18 @@ export default {
                 this.qtys = this.qtys.concat(new_qty);
             }
             this.selectedQty = this.qtys[0].value;
+        },
+        addToCart() {
+            this.$store.commit('addItemToCart', {
+                item_id: this.selectedVariation.item_id,
+                quantity: this.selectedQty
+            })
+            console.log(this.$store.getters.cart);
         }
     },
     computed: {
         priceAsString: function() {
-            return "$" + (this.selectedVariation * this.selectedQty).toString() + ".00";
+            return "$" + ((this.selectedVariation.amount / 100) * this.selectedQty).toString() + ".00";
         }
     },
     created() {
