@@ -10,7 +10,11 @@
                 Registration successful. Please login to continue to account.
             </v-alert>
             <v-card-title>
-                <span class="headline">Register</span>
+                <v-container>
+                    <v-layout headline>
+                        Register
+                    </v-layout>
+                </v-container>
                 <v-spacer></v-spacer>
             </v-card-title>
             <v-card-text>

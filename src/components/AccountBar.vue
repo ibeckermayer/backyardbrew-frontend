@@ -16,7 +16,7 @@
                                 <v-btn small flat class="account-button" @click.prevent="registerShow = true">Register</v-btn>
                             </v-flex>
                             <v-flex text-md-center md1 hidden v-if="loggedIn">
-                                <v-btn small flat class="account-button">Logout</v-btn>
+                                <v-btn small flat @click.prevent="logoutShow = true" class="account-button">Logout</v-btn>
                             </v-flex>
                             <v-flex text-md-center md1 hidden v-if="loggedIn">
                                 <v-btn small flat class="account-button">Account</v-btn>
@@ -39,23 +39,27 @@
             v-bind:show="registerShow"
             @registerClose="registerShow = false"
         ></register-dialog>
+        <logout-dialog :show="logoutShow" @logoutClose="logoutShow = false"></logout-dialog>
     </span>
 </template>
 
 <script>
 import LoginDialog from '@/components/LoginDialog';
 import RegisterDialog from '@/components/RegisterDialog';
+import LogoutDialog from '@/components/LogoutDialog';
 
 export default {
     name: 'AccountBar',
     components: {
         LoginDialog,
-        RegisterDialog
+        RegisterDialog,
+        LogoutDialog
     },
     data() {
         return {
             loginShow: false,
-            registerShow: false
+            registerShow: false,
+            logoutShow: false
         };
     },
     computed: {

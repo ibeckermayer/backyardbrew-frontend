@@ -29,6 +29,15 @@ export default new Vuex.Store({
         },
         addItemToCart(state, cartItem) {
             state.cart.items.push(cartItem);
+        },
+        resetUser(state) {
+            state.user.id = '';
+            state.user.first_name = '';
+            state.user.last_name = '';
+            state.user.email = '';
+            state.user.role = '';
+            state.user.access_token = '';
+            state.user.refresh_token = '';
         }
     },
     actions: {},

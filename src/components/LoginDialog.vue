@@ -10,7 +10,11 @@
                 Login successful!
             </v-alert>
             <v-card-title>
-                <span class="headline">Login</span>
+                <v-container>
+                    <v-layout headline>
+                        Login
+                    </v-layout>
+                </v-container>
                 <v-spacer></v-spacer>
             </v-card-title>
             <v-card-text>
