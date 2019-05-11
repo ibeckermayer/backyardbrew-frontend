@@ -72,6 +72,7 @@
                                     to="/under_construction"
                                     flat
                                     v-ripple="{ class: `brown--text` }"
+                                    disabled
                                     >About</v-btn
                                 >
                             </v-flex>
@@ -81,6 +82,7 @@
                                     to="/under_construction"
                                     flat
                                     v-ripple="{ class: `brown--text` }"
+                                    disabled
                                     >Retail</v-btn
                                 >
                             </v-flex>
@@ -90,6 +92,7 @@
                                     to="/under_construction"
                                     flat
                                     v-ripple="{ class: `brown--text` }"
+                                    disabled
                                     >R&D</v-btn
                                 >
                             </v-flex>
@@ -99,6 +102,7 @@
                                     to="/under_construction"
                                     flat
                                     v-ripple="{ class: `brown--text` }"
+                                    disabled
                                     >Tech</v-btn
                                 >
                             </v-flex>

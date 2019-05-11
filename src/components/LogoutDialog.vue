@@ -28,7 +28,7 @@
                 <v-container>
                     <v-layout justify-center align-center>
                         <v-btn color="primary" dark @click="logout">Logout</v-btn>
-                        <v-btn color="primary" outline @click="close" text-md-center>Cancel</v-btn>
+                        <v-btn color="primary" outline @click="close" text-md-center>Close</v-btn>
                     </v-layout>
                 </v-container>
             </v-card-actions>
@@ -60,6 +60,7 @@ export default {
             .catch(error => {
                 console.log(error.response.status);
                 console.log(error.response.data);
+                this.logout2(); // logout refresh_token even if logout1 fails, since access may just have expired
             });
         },
         logout2() {
@@ -76,6 +77,7 @@ export default {
             .catch(error => {
                 console.log(error.response.status);
                 console.log(error.response.data);
+                this.$store.commit('resetUser'); // reset the user in case refresh was expired
             });
         }
     },

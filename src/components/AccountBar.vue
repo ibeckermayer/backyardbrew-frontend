@@ -19,7 +19,7 @@
                                 <v-btn small flat @click.prevent="logoutShow = true" class="account-button">Logout</v-btn>
                             </v-flex>
                             <v-flex text-md-center md1 hidden v-if="loggedIn">
-                                <v-btn small flat class="account-button">Account</v-btn>
+                                <v-btn small flat disabled class="account-button">Account</v-btn>
                             </v-flex>
                             <v-flex md2>
                                 <v-btn small flat @click.prevent="cartShow = true">
