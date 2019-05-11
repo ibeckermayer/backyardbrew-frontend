@@ -26,6 +26,7 @@
                         <td class="text-xs-center">{{ props.item.quantity }}</td>
                         <td class="text-xs-center">{{ centsToDollarString(props.item.variation.item_variation_data.price_money.amount) }}</td>
                         <td class="text-xs-center">{{ centsToDollarString(props.item.quantity * props.item.variation.item_variation_data.price_money.amount) }}</td>
+                        <td class="text-xs-center"><v-btn @click="removeItem(props.item)" fab flat><v-icon>delete</v-icon></v-btn></td>
                     </template>
                 </v-data-table>
             </v-card-text>
@@ -90,6 +91,12 @@ export default {
                     value: 'priceto',
                     align: 'center',
                     sortable: false
+                },
+                {
+                    text: 'Remove',
+                    value: 'remove',
+                    align: 'center',
+                    sortable: false
                 }
             ]
         }
@@ -97,6 +104,25 @@ export default {
     methods: {
         centsToDollarString(cents) {
             return '$' + cents/100 + '.00';
+        },
+        removeItem(itemToRemove) {
+            this.$store.commit('removeItemFromCart', itemToRemove);
+            this.updateCheckoutUrl();
+        },
+        updateCheckoutUrl() {
+            this.checkoutReady = false;
+            const GENERATE_CHECKOUT_URL = process.env.VUE_APP_API_BASE_URL + '/generate_checkout_url';
+            axios.post(GENERATE_CHECKOUT_URL, this.$store.getters.cart) // ask for checkout url
+            .then(response => {
+                this.checkoutReady = true;
+                this.checkoutUrl = response.data.url;
+                console.log(this.checkoutUrl);
+            })
+            .catch(error => {
+                console.log(error.response.status);
+                console.log(error.response.data);
+                this.checkoutReady = false;
+            });
         }
     },
     computed: {
@@ -107,19 +133,7 @@ export default {
     watch: {
         show: function(newVal, oldVal) {
             if (newVal === true && this.cartHasItems) { // if showing dialog and items in cart
-                this.checkoutReady = false;
-                const GENERATE_CHECKOUT_URL = process.env.VUE_APP_API_BASE_URL + '/generate_checkout_url';
-                axios.post(GENERATE_CHECKOUT_URL, this.$store.getters.cart) // ask for checkout url
-                .then(response => {
-                    this.checkoutReady = true;
-                    this.checkoutUrl = response.data.url;
-                    console.log(this.checkoutUrl);
-                })
-                .catch(error => {
-                    console.log(error.response.status);
-                    console.log(error.response.data);
-                    this.checkoutReady = false;
-                });
+                this.updateCheckoutUrl();
             }
         }
     }
