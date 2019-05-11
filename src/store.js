@@ -16,7 +16,7 @@ export default new Vuex.Store({
             refresh_token: ''
         },
         cart: {
-            items: [] // list of CartItem {item_id: item.variation.item_variation_data.item_id, quantity: integer}
+            items: [] // list of CartItem {name: item.name, variation: item.variations[n], tax_ids: item.tax_ids, quantity: integer}
         }
     },
     getters: {

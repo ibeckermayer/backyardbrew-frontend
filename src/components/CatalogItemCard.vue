@@ -85,10 +85,7 @@ export default {
         this.catalogItem.variations.forEach(variation => {
             let new_variation = {
                 text: variation.item_variation_data.name,
-                value: {
-                    item_id: variation.item_variation_data.item_id, // item_id, for storage in cart
-                    amount: variation.item_variation_data.price_money.amount // price, in cents
-                }
+                value: variation
             };
             this.variations = this.variations.concat(new_variation);
         });
@@ -106,7 +103,9 @@ export default {
         },
         addToCart() {
             this.$store.commit('addItemToCart', {
-                item_id: this.selectedVariation.item_id,
+                name: this.catalogItem.name,
+                variation: this.selectedVariation,
+                tax_ids: this.catalogItem.tax_ids.slice(0),
                 quantity: this.selectedQty
             })
             console.log(this.$store.getters.cart);
@@ -114,7 +113,7 @@ export default {
     },
     computed: {
         priceAsString: function() {
-            return "$" + ((this.selectedVariation.amount / 100) * this.selectedQty).toString() + ".00";
+            return "$" + ((this.selectedVariation.item_variation_data.price_money.amount / 100) * this.selectedQty).toString() + ".00";
         }
     },
     created() {

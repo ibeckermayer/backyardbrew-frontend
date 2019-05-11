@@ -22,7 +22,7 @@
                                 <v-btn small flat class="account-button">Account</v-btn>
                             </v-flex>
                             <v-flex md2>
-                                <v-btn small flat>
+                                <v-btn small flat @click.prevent="cartShow = true">
                                     <v-icon dark color="white">shopping_cart</v-icon>
                                     <span color="white" class="cart">({{ cartCount }})</span>
                                 </v-btn>
@@ -40,6 +40,7 @@
             @registerClose="registerShow = false"
         ></register-dialog>
         <logout-dialog :show="logoutShow" @logoutClose="logoutShow = false"></logout-dialog>
+        <cart-dialog :show="cartShow" @cartClose="cartShow = false"></cart-dialog>
     </span>
 </template>
 
@@ -47,19 +48,22 @@
 import LoginDialog from '@/components/LoginDialog';
 import RegisterDialog from '@/components/RegisterDialog';
 import LogoutDialog from '@/components/LogoutDialog';
+import CartDialog from '@/components/CartDialog';
 
 export default {
     name: 'AccountBar',
     components: {
         LoginDialog,
         RegisterDialog,
-        LogoutDialog
+        LogoutDialog,
+        CartDialog
     },
     data() {
         return {
             loginShow: false,
             registerShow: false,
-            logoutShow: false
+            logoutShow: false,
+            cartShow: false
         };
     },
     computed: {
