@@ -1,6 +1,5 @@
 <template>
     <span>
-        <account-bar class="hidden-sm-and-down"></account-bar>
         <v-container app hidden-md-and-up pa-0>
             <v-toolbar color="#FFFFFF" light="">
                 <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -23,7 +22,38 @@
                 </v-list>
             </v-navigation-drawer>
         </v-container>
-        <v-container app hidden-sm-and-down class="nav-bar" fluid pt-4 mt-3>
+        <v-container app class="account-bar sticky" fluid pa-0>
+            <v-layout align-center row fill-height>
+                <v-flex md12 elevation-1 class="account-bar-flex">
+                    <v-container class="button-container" fluid>
+                        <v-layout justify-end align-center row fill-height>
+                            <v-flex text-md-center md1>
+                                <v-btn small flat class="account-button" href="#contact">Contact</v-btn>
+                            </v-flex>
+                            <v-flex text-md-center md1 hidden v-if="!loggedIn">
+                                <v-btn small flat class="account-button" @click.prevent="loginShow = true">Login</v-btn>
+                            </v-flex>
+                            <v-flex text-md-center md1 hidden v-if="!loggedIn">
+                                <v-btn small flat class="account-button" @click.prevent="registerShow = true">Register</v-btn>
+                            </v-flex>
+                            <v-flex text-md-center md1 hidden v-if="loggedIn">
+                                <v-btn small flat @click.prevent="logoutShow = true" class="account-button">Logout</v-btn>
+                            </v-flex>
+                            <v-flex text-md-center md1 hidden v-if="loggedIn">
+                                <v-btn small flat disabled class="account-button">Account</v-btn>
+                            </v-flex>
+                            <v-flex md2>
+                                <v-btn small flat @click.prevent="cartShow = true" class="account-button">
+                                    <v-icon dark color="white">shopping_cart</v-icon>
+                                    <span color="white" class="cart">({{ cartCount }})</span>
+                                </v-btn>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-flex>
+            </v-layout>
+        </v-container>
+        <v-container app hidden-sm-and-down class="nav-bar" fluid pt-4 mt-2 px-5>
             <v-layout align-center row fill-height>
                 <v-flex md2>
                     <v-container align-center class="logo-container">
@@ -120,16 +150,28 @@
                 </v-flex>
             </v-layout>
         </v-container>
+        <!-- Dialogs -->
+        <login-dialog v-bind:show="loginShow" @loginClose="loginShow = false"></login-dialog>
+        <register-dialog v-bind:show="registerShow" @registerClose="registerShow = false"></register-dialog>
+        <logout-dialog :show="logoutShow" @logoutClose="logoutShow = false"></logout-dialog>
+        <cart-dialog :show="cartShow" @cartClose="cartShow = false"></cart-dialog>
     </span>
 </template>
 
 <script>
-import AccountBar from '@/components/AccountBar';
+import LoginDialog from '@/components/LoginDialog';
+import RegisterDialog from '@/components/RegisterDialog';
+import LogoutDialog from '@/components/LogoutDialog';
+import CartDialog from '@/components/CartDialog';
 
 export default {
     data() {
         return {
             drawer: false,
+            loginShow: false,
+            registerShow: false,
+            logoutShow: false,
+            cartShow: false,
             nav_labels: [
                 {
                     nav_label: 'Brew',
@@ -168,7 +210,19 @@ export default {
     },
     name: 'AppNavigation',
     components: {
-        AccountBar
+        LoginDialog,
+        RegisterDialog,
+        LogoutDialog,
+        CartDialog
+    },
+    computed: {
+        cartCount () {
+            return this.$store.getters.cart.items.length;
+        },
+        loggedIn () {
+            // true if user is logged in, false otherwise
+            return this.$store.getters.user.access_token; // true if access token is not empty string
+        }
     }
 };
 </script>
@@ -206,5 +260,41 @@ a {
 
 .custom-button {
     background: rgba(141, 110, 99, 0.3);
+}
+
+.button-container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.account-bar {
+    background-color: #8d6e63;
+}
+
+.account-button {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.account-button::before {
+    color: transparent;
+}
+
+.sticky {
+  position:fixed; /* fixing the position takes it out of html flow - knows
+                   nothing about where to locate itself except by browser
+                   coordinates */
+  left:0;           /* top left corner should start at leftmost spot */
+  top:0;            /* top left corner should start at topmost spot */
+  width:100vw;      /* take up the full browser width */
+  z-index: 200;     /* high z-index so other content scrolls beneath */ 
+}
+
+.cart {
+    /* font-weight: bold; */
+    font-size: 1.5em;
+    color: white;
 }
 </style>
