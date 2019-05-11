@@ -27,9 +27,6 @@ export default new Vuex.Store({
         setUser(state, user) {
             state.user = user;
         },
-        addItemToCart(state, cartItem) {
-            state.cart.items.push(cartItem);
-        },
         resetUser(state) {
             state.user.id = '';
             state.user.first_name = '';
@@ -38,6 +35,21 @@ export default new Vuex.Store({
             state.user.role = '';
             state.user.access_token = '';
             state.user.refresh_token = '';
+        },
+        addItemToCart(state, itemToAdd) {
+            let foundInCart = false;
+            state.cart.items.forEach(item => {
+                if (item.variation.id === itemToAdd.variation.id) {
+                    item.quantity = item.quantity + itemToAdd.quantity;
+                    foundInCart = true;
+                }
+            })
+            if (!foundInCart) {
+                state.cart.items.push(itemToAdd);
+            }
+        },
+        removeItemFromCart(state, itemToRemove) {
+            state.cart.items = state.cart.items.filter(item => item != itemToRemove);
         }
     },
     actions: {},
