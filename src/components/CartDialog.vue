@@ -107,7 +107,9 @@ export default {
         },
         removeItem(itemToRemove) {
             this.$store.commit('removeItemFromCart', itemToRemove);
-            this.updateCheckoutUrl();
+            if (this.cartHasItems) {
+                this.updateCheckoutUrl();
+            }
         },
         updateCheckoutUrl() {
             this.checkoutReady = false;
