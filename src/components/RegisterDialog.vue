@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import UserManagementApi from '@/api/UserManagementApi';
 
 export default {
     name: 'RegisterDialog',
@@ -140,14 +140,12 @@ export default {
             if (this.hasErrors) {
                 console.log('Form has errors!');
             } else {
-                const REGISTER_URL = process.env.VUE_APP_API_BASE_URL + '/registration';
-                axios
-                    .put(REGISTER_URL, {
-                        first_name: this.form['firstName'],
-                        last_name: this.form['lastName'],
-                        email: this.form['email'],
-                        plaintext_password: this.form['password']
-                    })
+                UserManagementApi.register(
+                    this.form['firstName'],
+                    this.form['lastName'],
+                    this.form['email'],
+                    this.form['password']
+                )
                     .then(response => {
                         this.regSucc = true;
                     })
