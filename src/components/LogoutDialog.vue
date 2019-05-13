@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import UserManagementApi from '@/api/UserManagementApi'
 
 export default {
     name: 'LogoutDialog',
@@ -47,40 +47,7 @@ export default {
             this.$emit('logoutClose');
         },
         logout() {
-            const LOGOUT1_URL = process.env.VUE_APP_API_BASE_URL + '/logout1';
-            let header = {
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.getters.user.access_token
-                }
-            };
-            axios
-                .delete(LOGOUT1_URL, header) // logout access_token
-                .then(response => {
-                    this.logout2(); // logout refresh_token
-                })
-                .catch(error => {
-                    console.log(error.response.status);
-                    console.log(error.response.data);
-                    this.logout2(); // logout refresh_token even if logout1 fails, since access may just have expired
-                });
-        },
-        logout2() {
-            const LOGOUT2_URL = process.env.VUE_APP_API_BASE_URL + '/logout2';
-            let header = {
-                headers: {
-                    Authorization: 'Bearer ' + this.$store.getters.user.refresh_token
-                }
-            };
-            axios
-                .delete(LOGOUT2_URL, header) // logout refresh_token
-                .then(response => {
-                    this.$store.commit('resetUser'); // reset the user now that they're logged out
-                })
-                .catch(error => {
-                    console.log(error.response.status);
-                    console.log(error.response.data);
-                    this.$store.commit('resetUser'); // reset the user in case refresh was expired
-                });
+            UserManagementApi.logout();
         }
     },
     computed: {
