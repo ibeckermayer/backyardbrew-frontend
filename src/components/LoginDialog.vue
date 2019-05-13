@@ -64,6 +64,8 @@
 
 <script>
 import axios from 'axios';
+import UserManagementApi from '@/api/UserManagementApi';
+
 export default {
     name: 'LoginDialog',
     props: ['show'],
@@ -101,23 +103,14 @@ export default {
             }
         },
         login() {
-            const LOGIN_URL = process.env.VUE_APP_API_BASE_URL + '/login';
-            axios
-                .post(LOGIN_URL, {
-                    email: this.form['email'],
-                    plaintext_password: this.form['password']
-                })
-                .then(response => {
-                    this.$store.commit('setUser', response.data.user); // set user in store
-                })
-                .catch(error => {
-                    if (error.response.status == 404) {
-                        this.emailDNE = 'No user with this email is registered';
-                    }
-                    if (error.response.status == 401) {
-                        this.pwdIncorrect = 'Password incorrect';
-                    }
-                });
+            UserManagementApi.login(this.form['email'], this.form['password']).catch(error => {
+                if (error.response.status == 404) {
+                    this.emailDNE = 'No user with this email is registered';
+                }
+                if (error.response.status == 401) {
+                    this.pwdIncorrect = 'Password incorrect';
+                }
+            });
         },
         clearForm() {
             this.form['email'] = null;
