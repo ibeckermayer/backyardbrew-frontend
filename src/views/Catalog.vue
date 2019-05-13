@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import axios from 'axios';
 import CatalogItemCard from '@/components/CatalogItemCard';
+import CatalogApi from '@/api/CatalogApi';
 
 export default {
     name: 'Catalog',
@@ -49,26 +49,19 @@ export default {
         };
     },
     beforeRouteEnter(to, from, next) {
-        const CATALOG_URL = process.env.VUE_APP_API_BASE_URL + '/fullcatalog';
-        axios
-            .get(CATALOG_URL)
-            .then(response => {
-                next(vm => {
-                    vm.allCatalogItems = response.data.items.slice(0);
-                    vm.filteredCatalogItems = response.data.items.slice(0); // initialize to allCatalogItems
-                    response.data.categories.forEach(category => {
-                        let new_filter = {
-                            text: category.name,
-                            value: category.name
-                        };
-                        vm.filters = vm.filters.concat(new_filter);
-                    });
+        CatalogApi.getFullCatalog().then(response => {
+            next(vm => {
+                vm.allCatalogItems = response.data.items.slice(0);
+                vm.filteredCatalogItems = response.data.items.slice(0); // initialize to allCatalogItems
+                response.data.categories.forEach(category => {
+                    let new_filter = {
+                        text: category.name,
+                        value: category.name
+                    };
+                    vm.filters = vm.filters.concat(new_filter);
                 });
-            })
-            .catch(error => {
-                console.log(error.response.status);
-                console.log(error.response.data);
             });
+        });
     },
     watch: {
         currentFilter: function(newVal, oldVal) {
