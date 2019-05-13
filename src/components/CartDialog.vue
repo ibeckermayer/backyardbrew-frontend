@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import CheckoutApi from '@/api/CheckoutApi';
 
 export default {
     name: 'CartDialog',
@@ -129,18 +129,12 @@ export default {
         },
         updateCheckoutUrl() {
             this.checkoutReady = false;
-            const GENERATE_CHECKOUT_URL =
-                process.env.VUE_APP_API_BASE_URL + '/generate_checkout_url';
-            axios
-                .post(GENERATE_CHECKOUT_URL, this.$store.getters.cart) // ask for checkout url
+            CheckoutApi.getCheckoutUrl()
                 .then(response => {
                     this.checkoutReady = true;
                     this.checkoutUrl = response.data.url;
-                    console.log(this.checkoutUrl);
                 })
                 .catch(error => {
-                    console.log(error.response.status);
-                    console.log(error.response.data);
                     this.checkoutReady = false;
                 });
         }
