@@ -1,12 +1,12 @@
 <template>
     <v-dialog
-    :value="show"
-    @input="$emit('logoutClose')"
-    width="800"
-    :fullscreen="$vuetify.breakpoint.smAndDown"
+        :value="show"
+        @input="$emit('logoutClose')"
+        width="800"
+        :fullscreen="$vuetify.breakpoint.smAndDown"
     >
         <v-card>
-             <v-alert class="w-100 pa-0 ma-0" :value="loggedOut" type="success">
+            <v-alert class="w-100 pa-0 ma-0" :value="loggedOut" type="success">
                 Successfully logged out
             </v-alert>
             <v-card-title>
@@ -33,7 +33,7 @@
                 </v-container>
             </v-card-actions>
         </v-card>
-    </v-dialog>    
+    </v-dialog>
 </template>
 
 <script>
@@ -53,15 +53,16 @@ export default {
                     Authorization: 'Bearer ' + this.$store.getters.user.access_token
                 }
             };
-            axios.delete(LOGOUT1_URL, header) // logout access_token
-            .then(response => {
-                this.logout2(); // logout refresh_token
-            })
-            .catch(error => {
-                console.log(error.response.status);
-                console.log(error.response.data);
-                this.logout2(); // logout refresh_token even if logout1 fails, since access may just have expired
-            });
+            axios
+                .delete(LOGOUT1_URL, header) // logout access_token
+                .then(response => {
+                    this.logout2(); // logout refresh_token
+                })
+                .catch(error => {
+                    console.log(error.response.status);
+                    console.log(error.response.data);
+                    this.logout2(); // logout refresh_token even if logout1 fails, since access may just have expired
+                });
         },
         logout2() {
             const LOGOUT2_URL = process.env.VUE_APP_API_BASE_URL + '/logout2';
@@ -70,26 +71,25 @@ export default {
                     Authorization: 'Bearer ' + this.$store.getters.user.refresh_token
                 }
             };
-            axios.delete(LOGOUT2_URL, header) // logout refresh_token
-            .then(response => {
-                this.$store.commit('resetUser'); // reset the user now that they're logged out
-            })
-            .catch(error => {
-                console.log(error.response.status);
-                console.log(error.response.data);
-                this.$store.commit('resetUser'); // reset the user in case refresh was expired
-            });
+            axios
+                .delete(LOGOUT2_URL, header) // logout refresh_token
+                .then(response => {
+                    this.$store.commit('resetUser'); // reset the user now that they're logged out
+                })
+                .catch(error => {
+                    console.log(error.response.status);
+                    console.log(error.response.data);
+                    this.$store.commit('resetUser'); // reset the user in case refresh was expired
+                });
         }
     },
     computed: {
-        loggedOut () {
+        loggedOut() {
             // true if user is logged in, false otherwise
-            return !(this.$store.getters.user.access_token); // true if access token is not empty string
+            return !this.$store.getters.user.access_token; // true if access token is not empty string
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

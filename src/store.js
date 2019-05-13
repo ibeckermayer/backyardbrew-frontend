@@ -43,7 +43,7 @@ export default new Vuex.Store({
                     item.quantity = item.quantity + itemToAdd.quantity;
                     foundInCart = true;
                 }
-            })
+            });
             if (!foundInCart) {
                 state.cart.items.push(itemToAdd);
             }
@@ -52,6 +52,5 @@ export default new Vuex.Store({
             state.cart.items = state.cart.items.filter(item => item != itemToRemove);
         }
     },
-    actions: {},
-    
+    actions: {}
 });

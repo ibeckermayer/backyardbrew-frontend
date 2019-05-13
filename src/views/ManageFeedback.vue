@@ -37,7 +37,7 @@
 import store from '../store';
 import router from '../router';
 import FeedbackCard from '@/components/FeedbackCard';
-import FeedbackApi from '@/api/FeedbackApi'
+import FeedbackApi from '@/api/FeedbackApi';
 
 export default {
     name: 'ManageFeedback',
@@ -64,14 +64,14 @@ export default {
         };
     },
     beforeRouteEnter(to, from, next) {
-        FeedbackApi.getFeedbackPage(1, false) // initially load page 1 of unresolved feedback 
-        .then(response => {
-            // if authorization succeeds
-            next(vm => {
-                vm.feedbacks = response.data.feedbacks; // fill feedbacks list with first page
-                vm.total_pages = response.data.total_pages;
+        FeedbackApi.getFeedbackPage(1, false) // initially load page 1 of unresolved feedback
+            .then(response => {
+                // if authorization succeeds
+                next(vm => {
+                    vm.feedbacks = response.data.feedbacks; // fill feedbacks list with first page
+                    vm.total_pages = response.data.total_pages;
+                });
             });
-        });
     },
     methods: {
         nextPage() {
@@ -88,18 +88,17 @@ export default {
         },
         toggleResolved(feedback) {
             FeedbackApi.toggleFeedbackResolved(feedback.id, !feedback.resolved) // new resolved value is negation of current value
-            .then(response => {
-                // patch confirmed
-                this.total_pages = response.data.total_pages; // update max pages
-                if (this.currentPage > this.total_pages) {
-                    this.currentPage = this.total_pages; // if change of object state causes logical inconsistency, account for it
-                }
-                this.displayPage(this.currentPage);
-            });
+                .then(response => {
+                    // patch confirmed
+                    this.total_pages = response.data.total_pages; // update max pages
+                    if (this.currentPage > this.total_pages) {
+                        this.currentPage = this.total_pages; // if change of object state causes logical inconsistency, account for it
+                    }
+                    this.displayPage(this.currentPage);
+                });
         },
         displayPage(page) {
-            FeedbackApi.getFeedbackPage(page, this.resolved)
-            .then(response => {
+            FeedbackApi.getFeedbackPage(page, this.resolved).then(response => {
                 // on successful request
                 this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
                 this.total_pages = response.data.total_pages; // update total pages

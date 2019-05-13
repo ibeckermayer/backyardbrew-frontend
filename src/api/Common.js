@@ -1,18 +1,18 @@
 import store from '../store';
 
 export default {
-    jwtAccessHeader () {
+    jwtAccessHeader() {
         return {
             headers: {
                 Authorization: 'Bearer ' + store.getters.user.access_token
             }
-        }
+        };
     },
-    jwtRefreshHeader () {
+    jwtRefreshHeader() {
         return {
             headers: {
                 Authorization: 'Bearer ' + store.getters.user.refresh_token
             }
-        }
+        };
     }
-}
+};

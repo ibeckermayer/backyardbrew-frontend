@@ -14,7 +14,7 @@
                     </v-layout>
                 </v-container>
             </v-flex>
-            <v-container grid-list-md>  
+            <v-container grid-list-md>
                 <v-layout row wrap justify-center align-center>
                     <v-flex xs12 sm8 ma-2 v-for="(catalogItem, index) in filteredCatalogItems">
                         <catalog-item-card :catalog-item="catalogItem"></catalog-item-card>
@@ -30,7 +30,7 @@ import axios from 'axios';
 import CatalogItemCard from '@/components/CatalogItemCard';
 
 export default {
-    name: "Catalog",
+    name: 'Catalog',
     components: {
         CatalogItemCard
     },
@@ -39,48 +39,49 @@ export default {
             allCatalogItems: [], // list to hold entire catalog of items
             filteredCatalogItems: [], // list to hold catalog items for the currentFilter
             currentFilter: 'All', // Initialize to showing all items; corresponds to filters object below
-            filters: [ // Item filters for dropdown
+            filters: [
+                // Item filters for dropdown
                 {
                     text: 'All',
                     value: 'All'
                 }
             ]
-        }
+        };
     },
     beforeRouteEnter(to, from, next) {
         const CATALOG_URL = process.env.VUE_APP_API_BASE_URL + '/fullcatalog';
-        axios.get(CATALOG_URL)
-        .then(response => {
-            next(vm => {
-                vm.allCatalogItems = response.data.items.slice(0);
-                vm.filteredCatalogItems = response.data.items.slice(0); // initialize to allCatalogItems
-                response.data.categories.forEach(category => {
-                    let new_filter = {
-                        text: category.name,
-                        value: category.name
-                    }
-                    vm.filters = vm.filters.concat(new_filter);
-                })
+        axios
+            .get(CATALOG_URL)
+            .then(response => {
+                next(vm => {
+                    vm.allCatalogItems = response.data.items.slice(0);
+                    vm.filteredCatalogItems = response.data.items.slice(0); // initialize to allCatalogItems
+                    response.data.categories.forEach(category => {
+                        let new_filter = {
+                            text: category.name,
+                            value: category.name
+                        };
+                        vm.filters = vm.filters.concat(new_filter);
+                    });
+                });
             })
-        })
-        .catch(error => {
-            console.log(error.response.status);
-            console.log(error.response.data);
-        });
+            .catch(error => {
+                console.log(error.response.status);
+                console.log(error.response.data);
+            });
     },
     watch: {
         currentFilter: function(newVal, oldVal) {
             if (newVal === 'All') {
                 this.filteredCatalogItems = this.allCatalogItems.slice(0);
             } else {
-                this.filteredCatalogItems = this.allCatalogItems.filter(item => item.category_data.name === newVal);
+                this.filteredCatalogItems = this.allCatalogItems.filter(
+                    item => item.category_data.name === newVal
+                );
             }
         }
     }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
-
+<style scoped></style>

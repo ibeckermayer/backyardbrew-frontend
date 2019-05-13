@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import FeedbackApi from '@/api/FeedbackApi'
+import FeedbackApi from '@/api/FeedbackApi';
 
 export default {
     name: 'Feedback',
@@ -105,8 +105,11 @@ export default {
             if (this.hasErrors) {
                 console.log('Form has errors!');
             } else {
-                FeedbackApi.submitFeedback(this.form['name'], this.form['email'], this.form['feedback'])
-                .then(response => {
+                FeedbackApi.submitFeedback(
+                    this.form['name'],
+                    this.form['email'],
+                    this.form['feedback']
+                ).then(response => {
                     this.fbSucc = true;
                     this.clear();
                 });

@@ -28,22 +28,47 @@
                     <v-container class="button-container" fluid>
                         <v-layout justify-end align-center row fill-height>
                             <v-flex text-md-center md1>
-                                <v-btn small flat class="account-button" href="#contact">Contact</v-btn>
+                                <v-btn small flat class="account-button" href="#contact"
+                                    >Contact</v-btn
+                                >
                             </v-flex>
                             <v-flex text-md-center md1 hidden v-if="!loggedIn">
-                                <v-btn small flat class="account-button" @click.prevent="loginShow = true">Login</v-btn>
+                                <v-btn
+                                    small
+                                    flat
+                                    class="account-button"
+                                    @click.prevent="loginShow = true"
+                                    >Login</v-btn
+                                >
                             </v-flex>
                             <v-flex text-md-center md1 hidden v-if="!loggedIn">
-                                <v-btn small flat class="account-button" @click.prevent="registerShow = true">Register</v-btn>
+                                <v-btn
+                                    small
+                                    flat
+                                    class="account-button"
+                                    @click.prevent="registerShow = true"
+                                    >Register</v-btn
+                                >
                             </v-flex>
                             <v-flex text-md-center md1 hidden v-if="loggedIn">
-                                <v-btn small flat @click.prevent="logoutShow = true" class="account-button">Logout</v-btn>
+                                <v-btn
+                                    small
+                                    flat
+                                    @click.prevent="logoutShow = true"
+                                    class="account-button"
+                                    >Logout</v-btn
+                                >
                             </v-flex>
                             <v-flex text-md-center md1 hidden v-if="loggedIn">
                                 <v-btn small flat disabled class="account-button">Account</v-btn>
                             </v-flex>
                             <v-flex md2>
-                                <v-btn small flat @click.prevent="cartShow = true" class="account-button">
+                                <v-btn
+                                    small
+                                    flat
+                                    @click.prevent="cartShow = true"
+                                    class="account-button"
+                                >
                                     <v-icon dark color="white">shopping_cart</v-icon>
                                     <span color="white" class="cart">({{ cartCount }})</span>
                                 </v-btn>
@@ -152,7 +177,10 @@
         </v-container>
         <!-- Dialogs -->
         <login-dialog v-bind:show="loginShow" @loginClose="loginShow = false"></login-dialog>
-        <register-dialog v-bind:show="registerShow" @registerClose="registerShow = false"></register-dialog>
+        <register-dialog
+            v-bind:show="registerShow"
+            @registerClose="registerShow = false"
+        ></register-dialog>
         <logout-dialog :show="logoutShow" @logoutClose="logoutShow = false"></logout-dialog>
         <cart-dialog :show="cartShow" @cartClose="cartShow = false"></cart-dialog>
     </span>
@@ -216,10 +244,10 @@ export default {
         CartDialog
     },
     computed: {
-        cartCount () {
+        cartCount() {
             return this.$store.getters.cart.items.length;
         },
-        loggedIn () {
+        loggedIn() {
             // true if user is logged in, false otherwise
             return this.$store.getters.user.access_token; // true if access token is not empty string
         }
@@ -283,13 +311,13 @@ a {
 }
 
 .sticky {
-  position:fixed; /* fixing the position takes it out of html flow - knows
+    position: fixed; /* fixing the position takes it out of html flow - knows
                    nothing about where to locate itself except by browser
                    coordinates */
-  left:0;           /* top left corner should start at leftmost spot */
-  top:0;            /* top left corner should start at topmost spot */
-  width:100vw;      /* take up the full browser width */
-  z-index: 200;     /* high z-index so other content scrolls beneath */ 
+    left: 0; /* top left corner should start at leftmost spot */
+    top: 0; /* top left corner should start at topmost spot */
+    width: 100vw; /* take up the full browser width */
+    z-index: 200; /* high z-index so other content scrolls beneath */
 }
 
 .cart {
