@@ -74,8 +74,7 @@ export default {
         })
         .catch(error => {
             // if authorization fails
-            console.log(error.response.status);
-            console.log(error.response.data);
+            console.log(error);            
             router.push({ path: '/unauthorized' }); // push user to unauthorized route
         });
     },
@@ -103,8 +102,7 @@ export default {
                 this.displayPage(this.currentPage);
             })
             .catch(error => {
-                console.log(error.response.status);
-                console.log(error.response.data);
+                console.log(error);                
                 router.push({ path: '/unauthorized' }); // push user to unauthorized route
             });
         },
@@ -116,8 +114,7 @@ export default {
                 this.total_pages = response.data.total_pages; // update total pages
             })
             .catch(error => {
-                console.log(error.response.status);
-                console.log(error.response.data);
+                console.log(error);
                 router.push({ path: '/unauthorized' }); // push user to unauthorized route
             });
         }
