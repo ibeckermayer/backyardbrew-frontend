@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import store from '../store';
 import router from '../router';
 import FeedbackCard from '@/components/FeedbackCard';
+import FeedbackApi from '@/api/FeedbackApi'
 
 export default {
     name: 'ManageFeedback',
@@ -64,34 +64,20 @@ export default {
         };
     },
     beforeRouteEnter(to, from, next) {
-        const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
-        let header = {
-            headers: {
-                Authorization: 'Bearer ' + store.getters.user.access_token
-            }
-        };
-        axios
-            .post(
-                FEEDBACK_URL, // before entering route, get page 1 of unresolved feedbacks
-                {
-                    resolved: false, // initially load unresolved
-                    page: 1
-                },
-                header
-            )
-            .then(response => {
-                // if authorization succeeds
-                next(vm => {
-                    vm.feedbacks = response.data.feedbacks; // fill feedbacks list with first page
-                    vm.total_pages = response.data.total_pages;
-                });
-            })
-            .catch(error => {
-                // if authorization fails
-                console.log(error.response.status);
-                console.log(error.response.data);
-                router.push({ path: '/unauthorized' }); // push user to unauthorized route
+        FeedbackApi.getFeedbackPage(1, false) // initially load page 1 of unresolved feedback 
+        .then(response => {
+            // if authorization succeeds
+            next(vm => {
+                vm.feedbacks = response.data.feedbacks; // fill feedbacks list with first page
+                vm.total_pages = response.data.total_pages;
             });
+        })
+        .catch(error => {
+            // if authorization fails
+            console.log(error.response.status);
+            console.log(error.response.data);
+            router.push({ path: '/unauthorized' }); // push user to unauthorized route
+        });
     },
     methods: {
         nextPage() {
@@ -107,64 +93,33 @@ export default {
             }
         },
         toggleResolved(feedback) {
-            const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
-            let header = {
-                headers: {
-                    Authorization: 'Bearer ' + store.getters.user.access_token
+            FeedbackApi.toggleFeedbackResolved(feedback.id, !feedback.resolved) // new resolved value is negation of current value
+            .then(response => {
+                // patch confirmed
+                this.total_pages = response.data.total_pages; // update max pages
+                if (this.currentPage > this.total_pages) {
+                    this.currentPage = this.total_pages; // if change of object state causes logical inconsistency, account for it
                 }
-            };
-            let newResVal = !feedback.resolved; // new resolved value is negation of current value
-            let fb_id = feedback.id; // get id
-            axios
-                .patch(
-                    FEEDBACK_URL,
-                    {
-                        // patch object on backend/database
-                        id: fb_id,
-                        resolved: newResVal
-                    },
-                    header
-                )
-                .then(response => {
-                    // patch confirmed
-                    this.total_pages = response.data.total_pages; // update max pages
-                    if (this.currentPage > this.total_pages) {
-                        this.currentPage = this.total_pages; // if change of object state causes logical inconsistency, account for it
-                    }
-                    this.displayPage(this.currentPage);
-                })
-                .catch(error => {
-                    console.log(error.response.status);
-                    console.log(error.response.data);
-                    router.push({ path: '/unauthorized' }); // push user to unauthorized route
-                });
+                this.displayPage(this.currentPage);
+            })
+            .catch(error => {
+                console.log(error.response.status);
+                console.log(error.response.data);
+                router.push({ path: '/unauthorized' }); // push user to unauthorized route
+            });
         },
         displayPage(page) {
-            const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
-            let header = {
-                headers: {
-                    Authorization: 'Bearer ' + store.getters.user.access_token
-                }
-            };
-            axios
-                .post(
-                    FEEDBACK_URL,
-                    {
-                        resolved: this.resolved,
-                        page: page
-                    },
-                    header
-                )
-                .then(response => {
-                    // on successful request
-                    this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
-                    this.total_pages = response.data.total_pages; // update total pages
-                })
-                .catch(error => {
-                    console.log(error.response.status);
-                    console.log(error.response.data);
-                    router.push({ path: '/unauthorized' }); // push user to unauthorized route
-                });
+            FeedbackApi.getFeedbackPage(page, this.resolved)
+            .then(response => {
+                // on successful request
+                this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
+                this.total_pages = response.data.total_pages; // update total pages
+            })
+            .catch(error => {
+                console.log(error.response.status);
+                console.log(error.response.data);
+                router.push({ path: '/unauthorized' }); // push user to unauthorized route
+            });
         }
     },
     watch: {
