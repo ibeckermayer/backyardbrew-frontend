@@ -8,7 +8,6 @@ export default {
         return axios.post(GENERATE_CHECKOUT_URL, store.getters.cart).catch(error => {
             console.log(error);
             throw error;
-        })
-
+        });
     }
-}
+};
