@@ -72,10 +72,8 @@ export default {
                 vm.total_pages = response.data.total_pages;
             });
         })
-        .catch(error => {
-            // if authorization fails
-            console.log(error);            
-            router.push({ path: '/unauthorized' }); // push user to unauthorized route
+        .catch(() => {
+            return; // default error handling
         });
     },
     methods: {
@@ -101,9 +99,8 @@ export default {
                 }
                 this.displayPage(this.currentPage);
             })
-            .catch(error => {
-                console.log(error);                
-                router.push({ path: '/unauthorized' }); // push user to unauthorized route
+            .catch(() => {
+                return; // default error handling
             });
         },
         displayPage(page) {
@@ -113,9 +110,8 @@ export default {
                 this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
                 this.total_pages = response.data.total_pages; // update total pages
             })
-            .catch(error => {
-                console.log(error);
-                router.push({ path: '/unauthorized' }); // push user to unauthorized route
+            .catch(() => {
+                return; // default error handling                
             });
         }
     },

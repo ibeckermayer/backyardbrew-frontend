@@ -110,8 +110,8 @@ export default {
                     this.fbSucc = true;
                     this.clear();
                 })
-                .catch(error => {
-                    console.log(error);
+                .catch(() => {
+                    return; // use default
                 });
             }
         }
