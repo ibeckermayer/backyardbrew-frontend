@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import UserManagementApi from '@/api/UserManagementApi'
+import UserManagementApi from '@/api/UserManagementApi';
 
 export default {
     name: 'LogoutDialog',
