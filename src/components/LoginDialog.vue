@@ -63,7 +63,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import UserManagementApi from '@/api/UserManagementApi';
 
 export default {
