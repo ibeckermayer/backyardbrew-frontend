@@ -19,5 +19,13 @@ export default {
         };
         let header = Common.jwtAccessHeader();
         return axios.patch(FEEDBACK_URL, body, header);
+    },
+    submitFeedback(name, email, text) {
+        let body = {
+            name: name,
+            email: email,
+            text: text
+        };
+        return axios.put(FEEDBACK_URL, body);
     }
 }

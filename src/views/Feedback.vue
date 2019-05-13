@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import FeedbackApi from '@/api/FeedbackApi'
 
 export default {
     name: 'Feedback',
@@ -105,21 +105,14 @@ export default {
             if (this.hasErrors) {
                 console.log('Form has errors!');
             } else {
-                const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
-                axios
-                    .put(FEEDBACK_URL, {
-                        name: this.form['name'],
-                        email: this.form['email'],
-                        text: this.form['feedback']
-                    })
-                    .then(response => {
-                        this.fbSucc = true;
-                        this.clear();
-                        console.log('Feedback submitted successfully');
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                FeedbackApi.submitFeedback(this.form['name'], this.form['email'], this.form['feedback'])
+                .then(response => {
+                    this.fbSucc = true;
+                    this.clear();
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             }
         }
     }
