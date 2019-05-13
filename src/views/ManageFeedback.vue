@@ -71,9 +71,6 @@ export default {
                 vm.feedbacks = response.data.feedbacks; // fill feedbacks list with first page
                 vm.total_pages = response.data.total_pages;
             });
-        })
-        .catch(() => {
-            return; // default error handling
         });
     },
     methods: {
@@ -98,9 +95,6 @@ export default {
                     this.currentPage = this.total_pages; // if change of object state causes logical inconsistency, account for it
                 }
                 this.displayPage(this.currentPage);
-            })
-            .catch(() => {
-                return; // default error handling
             });
         },
         displayPage(page) {
@@ -109,9 +103,6 @@ export default {
                 // on successful request
                 this.feedbacks = response.data.feedbacks; // populate this.feedbacks with new page
                 this.total_pages = response.data.total_pages; // update total pages
-            })
-            .catch(() => {
-                return; // default error handling                
             });
         }
     },

@@ -109,9 +109,6 @@ export default {
                 .then(response => {
                     this.fbSucc = true;
                     this.clear();
-                })
-                .catch(() => {
-                    return; // use default
                 });
             }
         }

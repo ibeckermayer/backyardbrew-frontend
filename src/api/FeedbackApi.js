@@ -15,7 +15,6 @@ export default {
             // if authorization fails
             console.log(error);            
             router.push({ path: '/unauthorized' }); // push user to unauthorized route
-            throw error;
         });
     },
     toggleFeedbackResolved(id, resolved) {
@@ -28,7 +27,6 @@ export default {
             // if authorization fails
             console.log(error);            
             router.push({ path: '/unauthorized' }); // push user to unauthorized route
-            throw error;
         });
     },
     submitFeedback(name, email, text) {
@@ -39,7 +37,6 @@ export default {
         };
         return axios.put(FEEDBACK_URL, body).catch(error => {
             console.log(error);
-            throw error;
         });
     }
 }
