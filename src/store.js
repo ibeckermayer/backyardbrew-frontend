@@ -36,6 +36,9 @@ export default new Vuex.Store({
             state.user.access_token = '';
             state.user.refresh_token = '';
         },
+        setJwtAccess(state, jwtAccess) {
+            state.user.access_token = jwtAccess;
+        },
         addItemToCart(state, itemToAdd) {
             let foundInCart = false;
             state.cart.items.forEach(item => {
