@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Common from '@/api/Common';
-import router from '../router';
 
 const FEEDBACK_URL = process.env.VUE_APP_API_BASE_URL + '/feedback';
 
@@ -11,11 +10,7 @@ export default {
             page: page
         };
         let header = Common.jwtAccessHeader();
-        return axios.post(FEEDBACK_URL, body, header).catch(error => {
-            // if authorization fails
-            console.log(error);
-            router.push({ path: '/unauthorized' }); // push user to unauthorized route
-        });
+        return axios.post(FEEDBACK_URL, body, header);
     },
     toggleFeedbackResolved(id, resolved) {
         let body = {
@@ -23,11 +18,7 @@ export default {
             resolved: resolved
         };
         let header = Common.jwtAccessHeader();
-        return axios.patch(FEEDBACK_URL, body, header).catch(error => {
-            // if authorization fails
-            console.log(error);
-            router.push({ path: '/unauthorized' }); // push user to unauthorized route
-        });
+        return axios.patch(FEEDBACK_URL, body, header);
     },
     submitFeedback(name, email, text) {
         let body = {
@@ -35,8 +26,6 @@ export default {
             email: email,
             text: text
         };
-        return axios.put(FEEDBACK_URL, body).catch(error => {
-            console.log(error);
-        });
+        return axios.put(FEEDBACK_URL, body);
     }
 };
